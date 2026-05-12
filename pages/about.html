@@ -6,102 +6,55 @@
 <title>About — Adonai Kidane</title>
 <link rel="stylesheet" href="../css/style.css">
 <style>
-  .about-page { padding: 0 var(--page-pad) 120px; }
-
-  .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 80px; align-items: start;
-    padding: 72px 0; border-bottom: 1px solid var(--rule);
-  }
-
-  /* ── Photo area ── */
+  .about-page { padding: 0 var(--pad) 120px; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; padding: 72px 0; border-bottom: 1px solid var(--rule); }
   .about-photo-wrap { position: sticky; top: 100px; }
   .about-photo {
-    width: 100%; aspect-ratio: 3/4;
-    border-radius: 4px; overflow: hidden;
-    background: var(--green-light);
-    display: flex; align-items: center; justify-content: center;
-    flex-direction: column; gap: 12px;
-    margin-bottom: 20px;
+    width: 100%; aspect-ratio: 3/4; border-radius: 4px; overflow: hidden;
+    background: var(--green-light); display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 12px; margin-bottom: 20px;
   }
   .about-photo .ph-icon { font-size: 56px; opacity: .2; }
-  .about-photo .ph-label {
-    font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
-    color: var(--green); opacity: .5;
-  }
-  /* To add your photo: remove the placeholder children and add <img src="../images/photo.jpg" alt="Adonai Kidane"> */
+  .about-photo .ph-label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--green); opacity: .5; }
   .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .about-photo-caption { font-size: 12px; color: var(--ink-muted); line-height: 1.6; font-style: italic; padding-left: 16px; border-left: 2px solid var(--green); }
 
-  .about-photo-caption {
-    font-size: 12px; color: var(--ink-muted); line-height: 1.6;
-    font-style: italic; padding-left: 16px;
-    border-left: 2px solid var(--green);
-  }
-
-  /* ── Text side ── */
-  .about-text { }
-  .about-body {
-    font-size: 17px; color: var(--ink-soft); line-height: 1.95;
-    font-weight: 300; margin-bottom: 20px;
-  }
+  .about-body { font-size: 17px; color: var(--ink-soft); line-height: 1.95; font-weight: 300; margin-bottom: 20px; }
   .about-body strong { color: var(--green); font-weight: 500; }
 
-  /* ── Facts ── */
-  .about-facts { margin: 40px 0; display: flex; flex-direction: column; gap: 0; }
+  .about-facts { margin: 36px 0; }
   .fact-row {
     display: flex; justify-content: space-between; align-items: baseline;
-    padding: 16px 0; border-bottom: 1px solid var(--rule);
-    transition: padding-left .2s;
+    padding: 15px 0; border-bottom: 1px solid var(--rule); transition: padding-left .2s;
   }
   .fact-row:first-child { border-top: 1px solid var(--rule); }
   .fact-row:hover { padding-left: 8px; }
   .fact-key { font-size: 11px; color: var(--ink-muted); letter-spacing: .08em; text-transform: uppercase; }
-  .fact-val {
-    font-family: var(--serif); font-size: 18px; font-weight: 400; color: var(--ink);
-    text-align: right;
-  }
+  .fact-val { font-family: var(--serif); font-size: 18px; font-weight: 400; color: var(--ink); text-align: right; }
 
-  /* ── Timeline / journey ── */
-  .timeline-section { padding: 72px 0; border-bottom: 1px solid var(--rule); }
-  .timeline { display: flex; flex-direction: column; gap: 0; margin-top: 48px; }
-  .timeline-item {
-    display: grid; grid-template-columns: 120px 1fr;
-    gap: 32px; padding: 28px 0; border-bottom: 1px solid var(--rule);
-    position: relative;
-  }
-  .timeline-item:first-child { border-top: 1px solid var(--rule); }
-  .timeline-year {
-    font-family: var(--serif); font-size: 20px; font-weight: 600;
-    color: var(--green); padding-top: 4px;
-  }
-  .timeline-body { }
-  .timeline-role {
-    font-family: var(--serif); font-size: 22px; font-weight: 600;
-    color: var(--ink); margin-bottom: 4px; letter-spacing: -.01em;
-  }
-  .timeline-org { font-size: 13px; color: var(--green); margin-bottom: 8px; font-weight: 400; }
-  .timeline-desc {
-    font-size: 14px; color: var(--ink-muted); line-height: 1.75; font-weight: 300;
-  }
-
-  /* ── Outside work ── */
-  .outside-section { padding: 72px 0; }
-  .outside-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
-  .outside-card {
-    border: 1px solid var(--rule); border-radius: 4px; padding: 28px 24px;
+  /* Honors */
+  .honors-section { padding: 72px 0; border-bottom: 1px solid var(--rule); }
+  .honors-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 48px; }
+  .honor-card {
+    border: 1px solid var(--rule); border-radius: 4px; padding: 24px 20px;
     transition: border-color .25s, transform .2s;
   }
+  .honor-card:hover { border-color: var(--green); transform: translateY(-4px); }
+  .honor-icon { font-size: 24px; margin-bottom: 10px; }
+  .honor-title { font-family: var(--serif); font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+  .honor-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.6; font-weight: 300; }
+
+  /* Outside */
+  .outside-section { padding: 72px 0; }
+  .outside-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 48px; }
+  .outside-card { border: 1px solid var(--rule); border-radius: 4px; padding: 24px 20px; transition: border-color .25s, transform .2s; }
   .outside-card:hover { border-color: var(--green); transform: translateY(-4px); }
-  .outside-icon { font-size: 28px; margin-bottom: 12px; }
-  .outside-title {
-    font-family: var(--serif); font-size: 18px; font-weight: 600;
-    color: var(--ink); margin-bottom: 6px;
-  }
-  .outside-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.65; font-weight: 300; }
+  .outside-icon { font-size: 26px; margin-bottom: 10px; }
+  .outside-title { font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+  .outside-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.6; font-weight: 300; }
 </style>
 </head>
 <body>
-
 <div id="cursor"></div>
 <div id="cursor-ring"></div>
 <nav>
@@ -118,117 +71,129 @@
 <div class="page-hero">
   <div class="section-tag reveal"><span class="section-tag-line"></span>About</div>
   <h1 class="page-hero-h1 reveal reveal-delay-1">The person <em>behind it.</em></h1>
-  <p class="page-hero-sub reveal reveal-delay-2">
-    Warm, adventurous, organized chaos. Engineer by training, quant by obsession, human by default.
-  </p>
+  <p class="page-hero-sub reveal reveal-delay-2">CS & Statistics sophomore at Rice. Warm, adventurous, organized chaos — perpetually building things.</p>
 </div>
 
 <div class="about-page">
-
   <div class="about-grid">
     <div class="about-photo-wrap reveal">
       <div class="about-photo">
-        <!-- Replace with: <img src="../images/photo.jpg" alt="Adonai Kidane"> -->
+        <!-- To add your photo: delete the two lines below and uncomment the next line -->
         <div class="ph-icon">🧑🏾</div>
         <div class="ph-label">Add your photo here</div>
+        <!-- <img src="../images/photo.jpg" alt="Adonai Kidane"> -->
       </div>
-      <p class="about-photo-caption">
-        Houston, TX. Usually thinking about markets, building something, or planning the next trip.
-      </p>
+      <p class="about-photo-caption">Rice University, Houston TX. Usually in the middle of three projects, a conversation about markets, and a half-eaten meal.</p>
     </div>
 
-    <div class="about-text">
+    <div>
       <p class="about-body reveal">
-        I'm a software engineer with a deep pull toward <strong>quantitative finance</strong> —
-        the kind of person who finds options pricing genuinely exciting
-        and thinks latency optimization is a form of art.
+        I'm a sophomore at <strong>Rice University</strong> studying Computer Science and Statistics —
+        which is a fancy way of saying I spend my time thinking about data, systems, and how to make them do interesting things.
       </p>
       <p class="about-body reveal reveal-delay-1">
-        My work lives at intersections: math and systems, theory and production, rigor and creativity.
-        I've built everything from <strong>statistical arbitrage engines</strong> to full-stack dashboards
-        that make market data feel alive. I care about performance, elegance, and
-        understanding what's actually happening under the hood.
+        My path took a sharp turn toward <strong>quantitative finance</strong> when I realized markets are just
+        the world's most chaotic dataset. Now I'm heading to <strong>Jane Street</strong> as a Focus Fellow,
+        which still feels unreal if I'm honest.
       </p>
       <p class="about-body reveal reveal-delay-2">
-        Personality-wise? I'm warm and organized but also very much a work in progress.
-        I change my mind a lot — I think that's a feature, not a bug.
-        I love a good conversation, <strong>unexpected adventures</strong>,
-        and the occasional project that probably shouldn't have worked but did.
+        I've shipped AI legal tools, built fraud detection systems, done ML research on edge hardware,
+        and won a hackathon with Claude. I like problems that feel impossible — the kind where you're not
+        sure if you'll figure it out until suddenly you do.
       </p>
       <p class="about-body reveal reveal-delay-3">
-        Right now I'm open to roles at the intersection of quant and SWE —
-        think trading firms, fintech, or anything where the stakes feel real.
+        Personality-wise: <strong>warm, indecisive in the best way</strong>, organized when it counts,
+        and genuinely excited about almost everything. I'm a Martel College rep, in NSBE,
+        the Data Science Club, Robotics, and somehow also Badminton and Powerlifting.
       </p>
 
       <div class="about-facts reveal reveal-delay-2">
+        <div class="fact-row"><span class="fact-key">School</span><span class="fact-val">Rice University '28</span></div>
+        <div class="fact-row"><span class="fact-key">Major</span><span class="fact-val">CS & Statistics</span></div>
         <div class="fact-row"><span class="fact-key">Based in</span><span class="fact-val">Houston, TX</span></div>
-        <div class="fact-row"><span class="fact-key">Focus</span><span class="fact-val">Quant · SWE · Finance</span></div>
-        <div class="fact-row"><span class="fact-key">Status</span><span class="fact-val">Open to roles</span></div>
-        <div class="fact-row"><span class="fact-key">Education</span><span class="fact-val">Update this</span></div>
-        <div class="fact-row"><span class="fact-key">Languages</span><span class="fact-val">Python, C++, Rust, TS</span></div>
+        <div class="fact-row"><span class="fact-key">Next up</span><span class="fact-val">Jane Street, NYC</span></div>
+        <div class="fact-row"><span class="fact-key">Email</span><span class="fact-val">adonai@rice.edu</span></div>
       </div>
 
       <a class="btn-primary reveal reveal-delay-3" href="contact.html">Get in touch →</a>
     </div>
   </div>
 
-  <!-- TIMELINE -->
-  <div class="timeline-section">
-    <div class="section-tag reveal"><span class="section-tag-line"></span>Journey</div>
-    <h2 class="section-h2 reveal reveal-delay-1">How I got <em>here.</em></h2>
-
-    <div class="timeline">
-      <div class="timeline-item reveal">
-        <div class="timeline-year">2026</div>
-        <div class="timeline-body">
-          <div class="timeline-role">Building & Exploring</div>
-          <div class="timeline-org">Independent Projects</div>
-          <div class="timeline-desc">StatArb Engine v2, market data infrastructure, open-source quant tools. Actively looking for the right next opportunity.</div>
-        </div>
+  <!-- HONORS -->
+  <div class="honors-section">
+    <div class="section-tag reveal"><span class="section-tag-line"></span>Recognition</div>
+    <h2 class="section-h2 reveal reveal-delay-1">Honors &amp; <em>scholarships.</em></h2>
+    <div class="honors-grid">
+      <div class="honor-card reveal reveal-delay-1">
+        <div class="honor-icon">🏛</div>
+        <div class="honor-title">Trustee Distinguished Scholar</div>
+        <div class="honor-desc">Rice University's highest merit scholarship, awarded to exceptional incoming students.</div>
       </div>
-      <div class="timeline-item reveal reveal-delay-1">
-        <div class="timeline-year">2024</div>
-        <div class="timeline-body">
-          <div class="timeline-role">Update with your experience</div>
-          <div class="timeline-org">Your Company / School</div>
-          <div class="timeline-desc">Add what you were doing here — internships, jobs, research, school projects.</div>
-        </div>
+      <div class="honor-card reveal reveal-delay-2">
+        <div class="honor-icon">📚</div>
+        <div class="honor-title">Sachs Foundation Scholar</div>
+        <div class="honor-desc">Scholarship supporting high-achieving students of color pursuing higher education.</div>
       </div>
-      <div class="timeline-item reveal reveal-delay-2">
-        <div class="timeline-year">2022</div>
-        <div class="timeline-body">
-          <div class="timeline-role">Update with your experience</div>
-          <div class="timeline-org">Your Company / School</div>
-          <div class="timeline-desc">Add earlier milestones — the moment you got serious about finance + code, that first interesting project.</div>
-        </div>
+      <div class="honor-card reveal reveal-delay-3">
+        <div class="honor-icon">🔬</div>
+        <div class="honor-title">MIT MITES Summer '24</div>
+        <div class="honor-desc">Selected for MIT's elite pre-college STEM program with a 1.5% acceptance rate.</div>
+      </div>
+      <div class="honor-card reveal reveal-delay-1">
+        <div class="honor-icon">🎓</div>
+        <div class="honor-title">Jack Kent Cooke Scholar</div>
+        <div class="honor-desc">One of the nation's largest private scholarships for high-achieving students with financial need.</div>
+      </div>
+      <div class="honor-card reveal reveal-delay-2">
+        <div class="honor-icon">🏆</div>
+        <div class="honor-title">MHJ Scholar</div>
+        <div class="honor-desc">Additional merit recognition at Rice University.</div>
+      </div>
+      <div class="honor-card reveal reveal-delay-3">
+        <div class="honor-icon">🥉</div>
+        <div class="honor-title">Hackathon — 3rd Place</div>
+        <div class="honor-desc">Rice × Anthropic Claude Hackathon. ClauseCloud — legal AI review tool.</div>
       </div>
     </div>
   </div>
 
-  <!-- OUTSIDE WORK -->
+  <!-- OUTSIDE -->
   <div class="outside-section">
-    <div class="section-tag reveal"><span class="section-tag-line"></span>Outside the terminal</div>
+    <div class="section-tag reveal"><span class="section-tag-line"></span>Outside class</div>
     <h2 class="section-h2 reveal reveal-delay-1">What makes me <em>me.</em></h2>
-
     <div class="outside-grid">
       <div class="outside-card reveal reveal-delay-1">
         <div class="outside-icon">✈️</div>
         <div class="outside-title">Adventure</div>
-        <div class="outside-desc">I travel whenever I can. New cities, new food, new ways of seeing the world. It makes me a better engineer — different contexts, different problems.</div>
+        <div class="outside-desc">I travel whenever I can. New cities, new perspectives. It makes me a better engineer and a more interesting person.</div>
       </div>
       <div class="outside-card reveal reveal-delay-2">
-        <div class="outside-icon">📚</div>
-        <div class="outside-title">Reading</div>
-        <div class="outside-desc">Market microstructure, systems thinking, the occasional novel that has nothing to do with anything. Always have something on the go.</div>
+        <div class="outside-icon">🚴</div>
+        <div class="outside-title">Triathlon & Cycling</div>
+        <div class="outside-desc">Rice Cycling and Triathlon Club member. I like things that test how much discomfort you can turn into discipline.</div>
       </div>
       <div class="outside-card reveal reveal-delay-3">
-        <div class="outside-icon">🎯</div>
-        <div class="outside-title">Tinkering</div>
-        <div class="outside-desc">I build things for fun. Some of them work. Some of them teach me more than the ones that work. I'm okay with that ratio.</div>
+        <div class="outside-icon">🏋️</div>
+        <div class="outside-title">Powerlifting</div>
+        <div class="outside-desc">Rice Powerlifting Club. The bar doesn't care about your excuses — good reminder when debugging at 2am.</div>
+      </div>
+      <div class="outside-card reveal reveal-delay-1">
+        <div class="outside-icon">🌱</div>
+        <div class="outside-title">Holistic Garden</div>
+        <div class="outside-desc">Rice Holistic Garden member. Surprisingly grounding to grow things when everything else is moving fast.</div>
+      </div>
+      <div class="outside-card reveal reveal-delay-2">
+        <div class="outside-icon">🃏</div>
+        <div class="outside-title">Poker</div>
+        <div class="outside-desc">Rice Poker Club. It's basically applied probability with social engineering. Of course I love it.</div>
+      </div>
+      <div class="outside-card reveal reveal-delay-3">
+        <div class="outside-icon">🏸</div>
+        <div class="outside-title">Badminton</div>
+        <div class="outside-desc">Rice Badminton Club. The sport no one takes seriously until they lose to someone who does.</div>
       </div>
     </div>
   </div>
-
 </div>
 
 <footer>
@@ -241,7 +206,6 @@
   </ul>
   <span class="footer-copy">© 2026 Adonai Kidane</span>
 </footer>
-
 <script src="../js/shared.js"></script>
 </body>
 </html>
