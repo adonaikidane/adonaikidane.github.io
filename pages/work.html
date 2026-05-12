@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work — Adonai Kidane</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  .work-page { padding: 0 var(--page-pad) 120px; }
+
+  /* ── Project cards ── */
+  .project-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    padding: 72px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .project-card:first-child { border-top: 1px solid var(--rule); }
+  .project-card.reverse { direction: rtl; }
+  .project-card.reverse > * { direction: ltr; }
+
+  .project-img {
+    width: 100%; aspect-ratio: 16/10;
+    border-radius: 4px; overflow: hidden;
+  }
+  /* placeholder style until real images added */
+  .project-img.placeholder {
+    background: var(--green-light);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 10px;
+  }
+  .project-img.placeholder .ph-icon { font-size: 40px; opacity: .3; }
+  .project-img.placeholder .ph-label {
+    font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--green); opacity: .6;
+  }
+  /* when you add a real image: replace .placeholder with .has-image and add <img src="..."> inside */
+  .project-img.has-image img { width: 100%; height: 100%; object-fit: cover; }
+
+  .project-meta { }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .project-tag {
+    font-size: 10px; letter-spacing: .08em; font-weight: 400;
+    color: var(--green); border: 1px solid var(--green);
+    padding: 2px 9px; border-radius: 20px; font-family: var(--mono);
+  }
+  .project-num {
+    font-family: var(--serif); font-size: 13px;
+    color: var(--ink-faint); margin-bottom: 8px;
+  }
+  .project-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 600; color: var(--ink);
+    line-height: 1.1; margin-bottom: 16px;
+    letter-spacing: -.02em;
+  }
+  .project-desc {
+    font-size: 15px; color: var(--ink-soft); line-height: 1.85;
+    font-weight: 300; margin-bottom: 28px;
+  }
+  .project-results {
+    display: flex; gap: 24px; margin-bottom: 28px;
+    padding: 20px; background: var(--green-light); border-radius: 4px;
+  }
+  .result-item { }
+  .result-num {
+    font-family: var(--serif); font-size: 24px; font-weight: 600;
+    color: var(--green); line-height: 1;
+  }
+  .result-label { font-size: 10px; color: var(--ink-muted); letter-spacing: .06em; margin-top: 3px; }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; color: var(--ink-muted); text-decoration: none;
+    letter-spacing: .06em; text-transform: uppercase;
+    transition: color .25s;
+    border-bottom: 1px solid var(--rule); padding-bottom: 2px;
+  }
+  .project-link:hover { color: var(--green); border-color: var(--green); }
+
+  /* ── Skills grid at bottom ── */
+  .skills-section { padding: 80px 0 0; }
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px;
+  }
+  .skill-cell {
+    padding: 32px 28px; border: 1px solid var(--rule);
+    transition: background .3s, border-color .3s;
+  }
+  .skill-cell:hover { background: var(--green); border-color: var(--green); }
+  .skill-cell:hover .skill-name,
+  .skill-cell:hover .skill-desc,
+  .skill-cell:hover .skill-level { color: var(--cream); }
+  .skill-cell:hover .skill-bar-fill { background: rgba(255,255,255,.35); }
+  .skill-cell:hover .skill-bar-track { background: rgba(255,255,255,.15); }
+  .skill-name {
+    font-family: var(--serif); font-size: 20px; font-weight: 600;
+    color: var(--ink); margin-bottom: 5px; letter-spacing: -.01em;
+    transition: color .3s;
+  }
+  .skill-desc {
+    font-size: 12px; color: var(--ink-muted); line-height: 1.6;
+    margin-bottom: 14px; transition: color .3s;
+  }
+  .skill-bar-track { height: 2px; background: var(--rule); border-radius: 2px; margin-bottom: 6px; transition: background .3s; }
+  .skill-bar-fill { height: 100%; background: var(--green); border-radius: 2px; width: 0; transition: background .3s; }
+  .skill-level { font-size: 10px; color: var(--ink-faint); letter-spacing: .08em; text-transform: uppercase; transition: color .3s; }
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<nav>
+  <a class="nav-logo" href="../index.html">A<span>.</span>K</a>
+  <ul class="nav-links">
+    <li><a href="work.html">Work</a></li>
+    <li><a href="thoughts.html">Thoughts</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="contact.html">Let's talk →</a>
+</nav>
+
+<div class="page-hero">
+  <div class="section-tag reveal">
+    <span class="section-tag-line"></span>
+    My work
+  </div>
+  <h1 class="page-hero-h1 reveal reveal-delay-1">
+    Things I've <em>built.</em>
+  </h1>
+  <p class="page-hero-sub reveal reveal-delay-2">
+    A mix of quant systems, trading infrastructure, and full-stack products.
+    Each one started because I was genuinely curious about something.
+  </p>
+</div>
+
+<div class="work-page">
+
+  <!-- PROJECT 1 -->
+  <div class="project-card reveal">
+    <!-- TO ADD IMAGE: remove class "placeholder", add class "has-image", put <img src="../images/statarb.jpg" alt="StatArb Engine"> inside -->
+    <div class="project-img placeholder">
+      <div class="ph-icon">📈</div>
+      <div class="ph-label">Add project image</div>
+    </div>
+    <div class="project-meta">
+      <div class="project-num">01</div>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">C++</span>
+        <span class="project-tag">IB TWS</span>
+        <span class="project-tag">Quant</span>
+      </div>
+      <h2 class="project-title">StatArb Engine v2</h2>
+      <p class="project-desc">
+        Pairs trading system using Kalman filter signal generation for dynamic hedge ratio estimation.
+        Live on Interactive Brokers TWS with real-time position management, risk limits, and automated rebalancing.
+        Tested across 3 years of equity data with robust walk-forward validation.
+      </p>
+      <div class="project-results">
+        <div class="result-item">
+          <div class="result-num">1.94</div>
+          <div class="result-label">Sharpe ratio</div>
+        </div>
+        <div class="result-item">
+          <div class="result-num">3yr</div>
+          <div class="result-label">Backtest period</div>
+        </div>
+        <div class="result-item">
+          <div class="result-num">Live</div>
+          <div class="result-label">Status</div>
+        </div>
+      </div>
+      <a class="project-link" href="https://github.com" target="_blank">View on GitHub →</a>
+    </div>
+  </div>
+
+  <!-- PROJECT 2 -->
+  <div class="project-card reverse reveal">
+    <div class="project-img placeholder">
+      <div class="ph-icon">⚡</div>
+      <div class="ph-label">Add project image</div>
+    </div>
+    <div class="project-meta">
+      <div class="project-num">02</div>
+      <div class="project-tags">
+        <span class="project-tag">Rust</span>
+        <span class="project-tag">Kafka</span>
+        <span class="project-tag">Redis</span>
+        <span class="project-tag">Infra</span>
+      </div>
+      <h2 class="project-title">Market Data Pipeline</h2>
+      <p class="project-desc">
+        Real-time order book aggregation across 6 venues using a custom Rust UDP parser.
+        Sub-millisecond normalization feeds downstream analytics and execution systems.
+        Handles 500k+ messages/sec at peak with zero message loss.
+      </p>
+      <div class="project-results">
+        <div class="result-item">
+          <div class="result-num">23ms</div>
+          <div class="result-label">Avg latency</div>
+        </div>
+        <div class="result-item">
+          <div class="result-num">6</div>
+          <div class="result-label">Venues</div>
+        </div>
+        <div class="result-item">
+          <div class="result-num">500k+</div>
+          <div class="result-label">Msgs/sec</div>
+        </div>
+      </div>
+      <a class="project-link" href="https://github.com" target="_blank">View on GitHub →</a>
+    </div>
+  </div>
+
+  <!-- PROJECT 3 -->
+  <div class="project-card reveal">
+    <div class="project-img placeholder">
+      <div class="ph-icon">🧠</div>
+      <div class="ph-label">Add project image</div>
+    </div>
+    <div class="project-meta">
+      <div class="project-num">03</div>
+      <div class="project-tags">
+        <span class="project-tag">PyTorch</span>
+        <span class="project-tag">Options</span>
+        <span class="project-tag">ML</span>
+        <span class="project-tag">Finance</span>
+      </div>
+      <h2 class="project-title">Vol Surface Calibrator</h2>
+      <p class="project-desc">
+        Neural network implied volatility calibration trained on 5 years of SPX tick data.
+        Outperforms the standard SABR model on weekly options with lower bid-ask spread fit error.
+        Used in a live options trading desk simulation.
+      </p>
+      <div class="project-results">
+        <div class="result-item">
+          <div class="result-num">5yr</div>
+          <div class="result-label">Training data</div>
+        </div>
+        <div class="result-item">
+          <div class="result-num">&gt;SABR</div>
+          <div class="result-label">Accuracy</div>
+        </div>
+      </div>
+      <a class="project-link" href="https://github.com" target="_blank">View on GitHub →</a>
+    </div>
+  </div>
+
+  <!-- PROJECT 4 -->
+  <div class="project-card reverse reveal">
+    <div class="project-img placeholder">
+      <div class="ph-icon">🖥</div>
+      <div class="ph-label">Add project image</div>
+    </div>
+    <div class="project-meta">
+      <div class="project-num">04</div>
+      <div class="project-tags">
+        <span class="project-tag">React</span>
+        <span class="project-tag">TypeScript</span>
+        <span class="project-tag">FastAPI</span>
+        <span class="project-tag">Full-Stack</span>
+      </div>
+      <h2 class="project-title">Portfolio Dashboard</h2>
+      <p class="project-desc">
+        Real-time P&L, risk analytics, and position management dashboard connecting to multiple brokerage APIs.
+        Features live charts, Greeks visualization, multi-account aggregation,
+        and an alert system for threshold breaches.
+      </p>
+      <div class="project-results">
+        <div class="result-item">
+          <div class="result-num">Live</div>
+          <div class="result-label">P&L feed</div>
+        </div>
+        <div class="result-item">
+          <div class="result-num">3</div>
+          <div class="result-label">Brokerages</div>
+        </div>
+      </div>
+      <a class="project-link" href="https://github.com" target="_blank">View on GitHub →</a>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="skills-section">
+    <div class="section-tag reveal"><span class="section-tag-line"></span>Tech stack</div>
+    <h2 class="section-h2 reveal reveal-delay-1">What I work <em>with.</em></h2>
+    <div class="skills-grid">
+      <div class="skill-cell reveal">
+        <div class="skill-name">Python</div>
+        <div class="skill-desc">Quant modeling, ML, data pipelines, scripting</div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+        <div class="skill-level">Expert</div>
+      </div>
+      <div class="skill-cell reveal reveal-delay-1">
+        <div class="skill-name">C++ / Rust</div>
+        <div class="skill-desc">Low-latency systems, parsers, performance-critical</div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="78"></div></div>
+        <div class="skill-level">Advanced</div>
+      </div>
+      <div class="skill-cell reveal reveal-delay-2">
+        <div class="skill-name">React / TS</div>
+        <div class="skill-desc">Dashboards, full-stack apps, financial UIs</div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+        <div class="skill-level">Advanced</div>
+      </div>
+      <div class="skill-cell reveal reveal-delay-1">
+        <div class="skill-name">Quant Finance</div>
+        <div class="skill-desc">Derivatives, stat arb, portfolio theory, micro</div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+        <div class="skill-level">Advanced</div>
+      </div>
+      <div class="skill-cell reveal reveal-delay-2">
+        <div class="skill-name">ML / PyTorch</div>
+        <div class="skill-desc">Time series, NLP, neural nets for finance</div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+        <div class="skill-level">Advanced</div>
+      </div>
+      <div class="skill-cell reveal reveal-delay-3">
+        <div class="skill-name">Infra / Cloud</div>
+        <div class="skill-desc">AWS, Kafka, Redis, Docker, PostgreSQL</div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="74"></div></div>
+        <div class="skill-level">Proficient</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <a class="footer-logo" href="../index.html">A<span>.</span>K</a>
+  <ul class="footer-links">
+    <li><a href="work.html">Work</a></li>
+    <li><a href="thoughts.html">Thoughts</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 Adonai Kidane</span>
+</footer>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>
