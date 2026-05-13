@@ -7,6 +7,23 @@
 <link rel="stylesheet" href="../css/style.css">
 <style>
   .work-page { padding: 0 var(--pad) 120px; }
+
+  /* Experience - now first */
+  .exp-section { padding: 64px 0; border-bottom: 1px solid var(--rule); }
+  .exp-list { display: flex; flex-direction: column; margin-top: 48px; }
+  .exp-item {
+    display: grid; grid-template-columns: 180px 1fr;
+    gap: 32px; padding: 32px 0; border-bottom: 1px solid var(--rule);
+  }
+  @media (max-width: 640px) { .exp-item { grid-template-columns: 1fr; gap: 8px; } }
+  .exp-item:first-child { border-top: 1px solid var(--rule); }
+  .exp-date { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); padding-top: 6px; line-height: 1.7; }
+  .exp-role { font-family: var(--serif); font-size: 22px; font-weight: 600; color: var(--ink); margin-bottom: 2px; letter-spacing: -.01em; }
+  .exp-org { font-size: 13px; color: var(--green); margin-bottom: 10px; font-weight: 400; }
+  .exp-desc { font-size: 14px; color: var(--ink-muted); line-height: 1.75; font-weight: 300; }
+
+  /* Projects */
+  .projects-section { padding: 72px 0 0; }
   .project-card {
     display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
     align-items: center; padding: 72px 0; border-bottom: 1px solid var(--rule);
@@ -14,6 +31,9 @@
   .project-card:first-child { border-top: 1px solid var(--rule); }
   .project-card.reverse { direction: rtl; }
   .project-card.reverse > * { direction: ltr; }
+  @media (max-width: 768px) {
+    .project-card, .project-card.reverse { grid-template-columns: 1fr; direction: ltr; gap: 32px; }
+  }
   .project-img {
     width: 100%; aspect-ratio: 16/10; border-radius: 4px; overflow: hidden;
     background: var(--green-light);
@@ -21,70 +41,24 @@
     flex-direction: column; gap: 10px;
   }
   .project-img .ph-icon { font-size: 44px; opacity: .25; }
-  .project-img .ph-label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--green); opacity: .5; }
+  .project-img .ph-label { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--green); opacity: .5; }
   .project-img img { width: 100%; height: 100%; object-fit: cover; }
 
   .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-  .project-tag {
-    font-size: 10px; letter-spacing: .08em; color: var(--green);
-    border: 1px solid var(--green); padding: 2px 9px; border-radius: 20px; font-family: var(--mono);
-  }
+  .project-tag { font-size: 10px; letter-spacing: .08em; color: var(--green); border: 1px solid var(--green); padding: 2px 9px; border-radius: 20px; font-family: var(--mono); }
   .project-num { font-family: var(--serif); font-size: 13px; color: var(--ink-faint); margin-bottom: 8px; }
-  .project-title {
-    font-family: var(--serif); font-size: clamp(26px, 3.2vw, 38px);
-    font-weight: 600; color: var(--ink); line-height: 1.1; margin-bottom: 14px; letter-spacing: -.02em;
-  }
+  .project-title { font-family: var(--serif); font-size: clamp(26px, 3.2vw, 38px); font-weight: 600; color: var(--ink); line-height: 1.1; margin-bottom: 14px; letter-spacing: -.02em; }
   .project-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.85; font-weight: 300; margin-bottom: 22px; }
-  .project-results {
-    display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;
-    padding: 18px 20px; background: var(--green-light); border-radius: 4px;
-  }
-  .result-num { font-family: var(--serif); font-size: 22px; font-weight: 600; color: var(--green); line-height: 1; }
-  .result-label { font-size: 10px; color: var(--ink-muted); letter-spacing: .06em; margin-top: 2px; }
-  .project-award {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: #fff8e8; border: 1px solid #e8d49a; border-radius: 20px;
-    font-size: 11px; color: #7a5a10; padding: 4px 12px; margin-bottom: 16px;
-  }
+  .project-award { display: inline-flex; align-items: center; gap: 6px; background: #fff8e8; border: 1px solid #e8d49a; border-radius: 20px; font-size: 11px; color: #7a5a10; padding: 4px 12px; margin-bottom: 14px; }
   .project-link {
     display: inline-flex; align-items: center; gap: 6px;
     font-size: 12px; color: var(--ink-muted); text-decoration: none;
     letter-spacing: .06em; text-transform: uppercase;
     border-bottom: 1px solid var(--rule); padding-bottom: 2px; transition: color .25s, border-color .25s;
+    margin-right: 16px;
   }
   .project-link:hover { color: var(--green); border-color: var(--green); }
-
-  /* Experience section */
-  .exp-section { padding: 80px 0 0; }
-  .exp-list { display: flex; flex-direction: column; margin-top: 48px; }
-  .exp-item {
-    display: grid; grid-template-columns: 160px 1fr;
-    gap: 32px; padding: 32px 0; border-bottom: 1px solid var(--rule);
-  }
-  .exp-item:first-child { border-top: 1px solid var(--rule); }
-  .exp-date { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); padding-top: 6px; line-height: 1.6; }
-  .exp-role { font-family: var(--serif); font-size: 22px; font-weight: 600; color: var(--ink); margin-bottom: 3px; letter-spacing: -.01em; }
-  .exp-org { font-size: 13px; color: var(--green); margin-bottom: 10px; font-weight: 400; }
-  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-  .exp-bullets li {
-    font-size: 13px; color: var(--ink-muted); line-height: 1.7; font-weight: 300;
-    padding-left: 14px; position: relative;
-  }
-  .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--green); }
-
-  /* Skills */
-  .skills-section { padding: 80px 0 0; }
-  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px; }
-  .skill-cell {
-    padding: 28px 26px; border: 1px solid var(--rule); transition: background .3s, border-color .3s;
-  }
-  .skill-cell:hover { background: var(--green); border-color: var(--green); }
-  .skill-cell:hover .skill-name, .skill-cell:hover .skill-desc, .skill-cell:hover .skill-level { color: var(--cream); }
-  .skill-cell:hover .skill-bar-fill { background: rgba(255,255,255,.35); }
-  .skill-cell:hover .skill-bar-track { background: rgba(255,255,255,.15); }
-  .skill-name { font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--ink); margin-bottom: 4px; transition: color .3s; }
-  .skill-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.6; margin-bottom: 14px; transition: color .3s; }
-  .skill-level { font-size: 10px; color: var(--ink-faint); letter-spacing: .08em; text-transform: uppercase; transition: color .3s; }
+  .project-link.wip { color: var(--ink-faint); border-color: var(--rule); cursor: default; }
 </style>
 </head>
 <body>
@@ -93,6 +67,7 @@
 <nav>
   <a class="nav-logo" href="../index.html">A<span>.</span>K</a>
   <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
     <li><a href="work.html">Work</a></li>
     <li><a href="thoughts.html">Thoughts</a></li>
     <li><a href="about.html">About</a></li>
@@ -102,239 +77,154 @@
 </nav>
 
 <div class="page-hero">
-  <div class="section-tag reveal"><span class="section-tag-line"></span>My work</div>
+  <div class="section-tag reveal"><span class="section-tag-line"></span>Work</div>
   <h1 class="page-hero-h1 reveal reveal-delay-1">Things I've <em>built.</em></h1>
-  <p class="page-hero-sub reveal reveal-delay-2">
-    Projects, research, and roles — each one chasing a problem I couldn't stop thinking about.
-  </p>
 </div>
 
 <div class="work-page">
 
-  <!-- PROJECT 1: ClauseCloud -->
-  <div class="project-card reveal">
-    <div class="project-img">
-      <!-- Add image: <img src="../images/clausecloud.jpg" alt="ClauseCloud"> -->
-      <div class="ph-icon">📄</div>
-      <div class="ph-label">Add screenshot</div>
-    </div>
-    <div>
-      <div class="project-award">🏆 3rd place — Rice × Anthropic Claude Hackathon</div>
-      <div class="project-num">01</div>
-      <div class="project-tags">
-        <span class="project-tag">JavaScript</span>
-        <span class="project-tag">React</span>
-        <span class="project-tag">Claude API</span>
-        <span class="project-tag">Python OCR</span>
-        <span class="project-tag">Vector DB</span>
-      </div>
-      <h2 class="project-title">ClauseCloud</h2>
-      <p class="project-desc">
-        AI-powered legal document review that reduces processing time from days to 8 seconds.
-        Built a low-latency OCR pipeline in Python, an extraction system identifying best vendor terms in 90%+ of tests,
-        and React dashboards for clause visualization and side-by-side multi-document comparison.
-        Achieved ~95% accuracy on 100+ contracts using deterministic JSON-schema output to cut hallucinations.
-      </p>
-      <div class="project-results">
-        <div><div class="result-num">8s</div><div class="result-label">Processing time (was days)</div></div>
-        <div><div class="result-num">~95%</div><div class="result-label">Accuracy on contracts</div></div>
-        <div><div class="result-num">90%+</div><div class="result-label">Best-term identification</div></div>
-      </div>
-      <a class="project-link" href="https://github.com/adonaikidane" target="_blank">View on GitHub →</a>
-    </div>
-  </div>
-
-  <!-- PROJECT 2: ML Fraud Detection -->
-  <div class="project-card reverse reveal">
-    <div class="project-img">
-      <div class="ph-icon">🧠</div>
-      <div class="ph-label">Add screenshot</div>
-    </div>
-    <div>
-      <div class="project-num">02</div>
-      <div class="project-tags">
-        <span class="project-tag">Python</span>
-        <span class="project-tag">Feature Engineering</span>
-        <span class="project-tag">ML</span>
-        <span class="project-tag">Pandas</span>
-      </div>
-      <h2 class="project-title">ML Fraud Detection</h2>
-      <p class="project-desc">
-        At Machine Learning at Rice, designed model-ready datasets and automated feature-extraction tracking
-        across 34,000 transaction, merchant, demographic, and location records.
-        Engineered target-encoded features that boosted model accuracy from 0.79 to 0.91 and achieved 6× higher fraud recall.
-        Decreased runtime by 30% via feature selection, dimensionality reduction, and optimized encoding.
-      </p>
-      <div class="project-results">
-        <div><div class="result-num">0.91</div><div class="result-label">Model accuracy</div></div>
-        <div><div class="result-num">6×</div><div class="result-label">Higher fraud recall</div></div>
-        <div><div class="result-num">30%</div><div class="result-label">Runtime reduction</div></div>
-      </div>
-      <a class="project-link" href="https://github.com/adonaikidane" target="_blank">View on GitHub →</a>
-    </div>
-  </div>
-
-  <!-- PROJECT 3: Pita Track -->
-  <div class="project-card reveal">
-    <div class="project-img">
-      <div class="ph-icon">📈</div>
-      <div class="ph-label">Add screenshot</div>
-    </div>
-    <div>
-      <div class="project-num">03</div>
-      <div class="project-tags">
-        <span class="project-tag">Python</span>
-        <span class="project-tag">R</span>
-        <span class="project-tag">Quant Strategy</span>
-        <span class="project-tag">Backtesting</span>
-      </div>
-      <h2 class="project-title">Pita Track</h2>
-      <p class="project-desc">
-        Quantitative investment strategy simulator for macroeconomic allocation between equity indices and treasury bonds.
-        Backtested strategies on historical data from 2019–2024, improving model precision by 30% over 2 months.
-        Built in Python and R with a focus on regime detection and risk-adjusted return optimization.
-      </p>
-      <div class="project-results">
-        <div><div class="result-num">30%</div><div class="result-label">Precision improvement</div></div>
-        <div><div class="result-num">5yr</div><div class="result-label">Historical backtest</div></div>
-      </div>
-      <a class="project-link" href="https://github.com/adonaikidane" target="_blank">View on GitHub →</a>
-    </div>
-  </div>
-
-  <!-- PROJECT 4: Dragon Therapy -->
-  <div class="project-card reverse reveal">
-    <div class="project-img">
-      <div class="ph-icon">🐉</div>
-      <div class="ph-label">Add screenshot</div>
-    </div>
-    <div>
-      <div class="project-num">04</div>
-      <div class="project-tags">
-        <span class="project-tag">JavaScript</span>
-        <span class="project-tag">Node.js</span>
-        <span class="project-tag">Gemini API</span>
-        <span class="project-tag">Canvas</span>
-        <span class="project-tag">Chart.js</span>
-      </div>
-      <h2 class="project-title">Dragon Therapy</h2>
-      <p class="project-desc">
-        Full-stack pediatric motor therapy app with a 10-level Canvas-based game tracking fine motor recovery metrics.
-        Deployed on GitHub Pages with an Express.js backend on Render. Three Gemini 1.5 Flash endpoints for correlation
-        analysis and JSON outlier detection. Vanilla JS SPA with hash-based router managing 5 pages and a floating AI chatbot for clinician queries.
-      </p>
-      <div class="project-results">
-        <div><div class="result-num">10</div><div class="result-label">Game levels</div></div>
-        <div><div class="result-num">3</div><div class="result-label">Gemini API endpoints</div></div>
-        <div><div class="result-num">Live</div><div class="result-label">Deployed</div></div>
-      </div>
-      <a class="project-link" href="https://github.com/adonaikidane" target="_blank">View on GitHub →</a>
-    </div>
-  </div>
-
-  <!-- EXPERIENCE -->
+  <!-- EXPERIENCE FIRST -->
   <div class="exp-section">
     <div class="section-tag reveal"><span class="section-tag-line"></span>Experience</div>
     <h2 class="section-h2 reveal reveal-delay-1">Where I've <em>worked.</em></h2>
     <div class="exp-list">
+
       <div class="exp-item reveal">
+        <div class="exp-date">Summer 2025<br>Houston, TX</div>
+        <div>
+          <div class="exp-role">Software Engineering Intern</div>
+          <div class="exp-org">Goff Financial Group</div>
+          <div class="exp-desc">Working on database systems and investments infrastructure. Building internal tooling that touches real financial data.</div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal reveal-delay-1">
         <div class="exp-date">May 2026<br>New York, NY</div>
         <div>
           <div class="exp-role">Focus Fellow</div>
           <div class="exp-org">Jane Street</div>
-          <ul class="exp-bullets">
-            <li>Selected for an invitation-only trading and quantitative finance immersion program</li>
-            <li>Engaging with traders and researchers on systematic decision-making, probability, and market microstructure</li>
-          </ul>
+          <div class="exp-desc">Invitation-only trading and quantitative finance immersion. Spent a week with traders and researchers thinking hard about probability, markets, and decision-making under uncertainty.</div>
         </div>
       </div>
-      <div class="exp-item reveal reveal-delay-1">
+
+      <div class="exp-item reveal reveal-delay-2">
         <div class="exp-date">Jan 2026 – Present<br>Houston, TX</div>
         <div>
           <div class="exp-role">Undergraduate Research Assistant</div>
-          <div class="exp-org">Rice School of Engineering (Metanoia Group)</div>
-          <ul class="exp-bullets">
-            <li>Benchmarking ML inference on NVIDIA Jetson Nano and Raspberry Pi using Python and TensorRT</li>
-            <li>Simulating neural network workloads across device configurations, cutting prototype evaluation time 25%</li>
-            <li>Designing FPGA-based ML prototypes in Verilog; reducing power overhead by 50% vs. baseline</li>
-          </ul>
+          <div class="exp-org">Rice School of Engineering — Metanoia Group</div>
+          <div class="exp-desc">Benchmarking ML inference on edge hardware (Jetson Nano, Raspberry Pi). Designing FPGA-based ML prototypes in Verilog. Cut power overhead 50% vs. baseline and prototype evaluation time by 25%.</div>
         </div>
       </div>
-      <div class="exp-item reveal reveal-delay-2">
+
+      <div class="exp-item reveal reveal-delay-3">
         <div class="exp-date">Oct 2024 – Present<br>Houston, TX</div>
         <div>
           <div class="exp-role">Software Developer</div>
           <div class="exp-org">Machine Learning at Rice</div>
-          <ul class="exp-bullets">
-            <li>Designed model-ready datasets for 34,000 transaction records for credit card fraud detection</li>
-            <li>Boosted model accuracy from 0.79 to 0.91 and achieved 6× higher fraud recall</li>
-            <li>Decreased runtime by 30% via feature selection and optimized encoding</li>
-          </ul>
+          <div class="exp-desc">Built ML pipelines for credit card fraud detection across 34,000 records. Pushed model accuracy from 79% to 91% and improved fraud recall by 6×. Cut runtime 30% through smarter feature engineering.</div>
         </div>
       </div>
-      <div class="exp-item reveal reveal-delay-3">
-        <div class="exp-date">Oct–Dec 2025<br>Remote</div>
+
+      <div class="exp-item reveal reveal-delay-4">
+        <div class="exp-date">Oct – Dec 2025<br>Remote</div>
         <div>
           <div class="exp-role">AI Product Research Intern</div>
           <div class="exp-org">YAI</div>
-          <ul class="exp-bullets">
-            <li>Built a market analysis framework in Excel to evaluate new product viability across 2 key products</li>
-            <li>Decreased workflow inefficiencies by 50% using a roadmap prioritization tool</li>
-          </ul>
+          <div class="exp-desc">Built a market analysis framework to evaluate product viability. Cut workflow inefficiencies by 50% using a competitor trend prioritization tool.</div>
         </div>
       </div>
+
     </div>
   </div>
 
-  <!-- SKILLS -->
-  <div class="skills-section">
-    <div class="section-tag reveal"><span class="section-tag-line"></span>Tech stack</div>
-    <h2 class="section-h2 reveal reveal-delay-1">What I work <em>with.</em></h2>
-    <div class="skills-grid">
-      <div class="skill-cell reveal">
-        <div class="skill-name">Python</div>
-        <div class="skill-desc">ML pipelines, data engineering, quant modeling, research</div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
-        <div class="skill-level">Advanced</div>
+  <!-- PROJECTS -->
+  <div class="projects-section">
+    <div class="section-tag reveal"><span class="section-tag-line"></span>Projects</div>
+    <h2 class="section-h2 reveal reveal-delay-1">Things I've <em>shipped.</em></h2>
+
+    <div class="project-card reveal">
+      <div class="project-img">
+        <!-- <img src="../images/clausecloud.jpg" alt="ClauseCloud"> -->
+        <div class="ph-icon">📄</div>
+        <div class="ph-label">Add screenshot</div>
       </div>
-      <div class="skill-cell reveal reveal-delay-1">
-        <div class="skill-name">JavaScript</div>
-        <div class="skill-desc">React, Node.js, Express, full-stack web apps</div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
-        <div class="skill-level">Advanced</div>
-      </div>
-      <div class="skill-cell reveal reveal-delay-2">
-        <div class="skill-name">C++ / R</div>
-        <div class="skill-desc">Software engineering coursework, statistical computing</div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="72"></div></div>
-        <div class="skill-level">Proficient</div>
-      </div>
-      <div class="skill-cell reveal reveal-delay-1">
-        <div class="skill-name">ML / AI</div>
-        <div class="skill-desc">Feature engineering, model training, LLM APIs, edge ML</div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="84"></div></div>
-        <div class="skill-level">Advanced</div>
-      </div>
-      <div class="skill-cell reveal reveal-delay-2">
-        <div class="skill-name">Quant Finance</div>
-        <div class="skill-desc">Market microstructure, backtesting, systematic strategies</div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
-        <div class="skill-level">Growing</div>
-      </div>
-      <div class="skill-cell reveal reveal-delay-3">
-        <div class="skill-name">Infra / Tools</div>
-        <div class="skill-desc">Git, Docker, Vercel, GitHub Pages, VS Code, TensorRT</div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="78"></div></div>
-        <div class="skill-level">Proficient</div>
+      <div>
+        <div class="project-award">🏆 3rd place — Rice × Anthropic Claude Hackathon</div>
+        <div class="project-num">01</div>
+        <div class="project-tags">
+          <span class="project-tag">JavaScript</span>
+          <span class="project-tag">React</span>
+          <span class="project-tag">Claude API</span>
+          <span class="project-tag">Python OCR</span>
+        </div>
+        <h2 class="project-title">ClauseCloud</h2>
+        <p class="project-desc">AI legal document review. Built a Python OCR pipeline that cuts processing from days to 8 seconds, identifies best vendor terms in 90%+ of tests, and hits ~95% accuracy on 100+ contracts. React dashboards for clause visualization and multi-doc comparison.</p>
+        <a class="project-link" href="https://github.com/adonaikidane/Cloud-Doc-by-Cloud" target="_blank">GitHub →</a>
       </div>
     </div>
-  </div>
 
+    <div class="project-card reverse reveal">
+      <div class="project-img">
+        <div class="ph-icon">🧠</div>
+        <div class="ph-label">Add screenshot</div>
+      </div>
+      <div>
+        <div class="project-num">02</div>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">Pandas</span>
+          <span class="project-tag">Feature Engineering</span>
+        </div>
+        <h2 class="project-title">ML Fraud Detection</h2>
+        <p class="project-desc">Credit card fraud detection pipeline across 34,000 records. Engineered target-encoded features that pushed accuracy from 79% to 91% and achieved 6× higher fraud recall. Runtime dropped 30% through dimensionality reduction and smarter encoding.</p>
+        <a class="project-link" href="https://github.com/adonaikidane/CC-Fraud" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-img">
+        <div class="ph-icon">📈</div>
+        <div class="ph-label">Add screenshot</div>
+      </div>
+      <div>
+        <div class="project-num">03</div>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">R</span>
+          <span class="project-tag">Backtesting</span>
+        </div>
+        <h2 class="project-title">Pita Track</h2>
+        <p class="project-desc">Quantitative investment strategy simulator for macro allocation between equities and bonds. Backtested on 2019–2024 data. Model precision up 30% over two months. Still in progress.</p>
+        <span class="project-link wip">In progress — link coming soon</span>
+      </div>
+    </div>
+
+    <div class="project-card reverse reveal">
+      <div class="project-img">
+        <div class="ph-icon">🐉</div>
+        <div class="ph-label">Add screenshot</div>
+      </div>
+      <div>
+        <div class="project-num">04</div>
+        <div class="project-tags">
+          <span class="project-tag">JavaScript</span>
+          <span class="project-tag">Node.js</span>
+          <span class="project-tag">Gemini API</span>
+          <span class="project-tag">Canvas</span>
+        </div>
+        <h2 class="project-title">Dragon Therapy</h2>
+        <p class="project-desc">Pediatric motor therapy app with a 10-level Canvas game tracking fine motor recovery. Three Gemini 1.5 Flash endpoints for correlation analysis. Deployed on GitHub Pages with an Express backend. AI chatbot for clinician queries built in.</p>
+        <a class="project-link" href="https://github.com/adonaikidane/Dragon-Therapy1" target="_blank">GitHub →</a>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <footer>
   <a class="footer-logo" href="../index.html">A<span>.</span>K</a>
   <ul class="footer-links">
+    <li><a href="../index.html">Home</a></li>
     <li><a href="work.html">Work</a></li>
     <li><a href="thoughts.html">Thoughts</a></li>
     <li><a href="about.html">About</a></li>

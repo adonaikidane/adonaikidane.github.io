@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adonai Kidane — CS & Statistics @ Rice</title>
+<title>Adonai Kidane</title>
 <link rel="stylesheet" href="css/style.css">
 <style>
   #hero {
@@ -12,6 +12,10 @@
     align-items: center;
     padding: 130px var(--pad) 80px; gap: 60px;
     position: relative; overflow: hidden;
+  }
+  @media (max-width: 768px) {
+    #hero { grid-template-columns: 1fr; padding: 110px var(--pad) 60px; }
+    .hero-right { display: none; }
   }
   .hero-bg-text {
     position: absolute; bottom: -60px; right: -30px;
@@ -30,17 +34,6 @@
     opacity: 0; animation: fadeUp .8s ease .2s forwards;
   }
   .hero-eyebrow-line { width: 40px; height: 1px; background: var(--green); }
-
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--green-light); border: 1px solid rgba(26,92,58,.2);
-    border-radius: 20px; padding: 6px 14px; margin-bottom: 20px;
-    font-size: 11px; color: var(--green); font-weight: 400; letter-spacing: .04em;
-    opacity: 0; animation: fadeUp .8s ease .1s forwards;
-  }
-  .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
-  @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(26,92,58,.4);}50%{box-shadow:0 0 0 5px rgba(26,92,58,0);} }
-
   .hero-h1 {
     font-family: var(--serif);
     font-size: clamp(58px, 6.5vw, 92px);
@@ -57,7 +50,7 @@
   }
   .hero-desc mark { background: none; color: var(--green); font-weight: 400; }
   .hero-actions {
-    display: flex; gap: 20px; align-items: center;
+    display: flex; gap: 20px; align-items: center; flex-wrap: wrap;
     opacity: 0; animation: fadeUp .9s ease .65s forwards;
   }
 
@@ -68,19 +61,23 @@
   }
   .stat-card {
     background: white; border: 1px solid var(--rule); border-radius: 4px;
-    padding: 20px 24px; display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 22px; display: flex; justify-content: space-between; align-items: center;
     transition: border-color .3s, transform .25s;
   }
   .stat-card:hover { border-color: var(--green); transform: translateX(8px); }
-  .stat-card:nth-child(2) { margin-left: 24px; }
-  .stat-card:nth-child(3) { margin-left: 48px; }
-  .stat-card:nth-child(4) { margin-left: 24px; }
-  .stat-num {
-    font-family: var(--serif); font-size: 36px;
-    font-weight: 600; color: var(--ink); line-height: 1;
+  .stat-card:nth-child(2) { margin-left: 20px; }
+  .stat-card:nth-child(3) { margin-left: 40px; }
+  .stat-card:nth-child(4) { margin-left: 20px; }
+  .stat-label-top {
+    font-size: 10px; color: var(--ink-muted); letter-spacing: .05em;
+    margin-bottom: 4px; font-weight: 400;
   }
-  .stat-label { font-size: 11px; color: var(--ink-muted); letter-spacing: .05em; margin-top: 3px; }
-  .stat-icon { font-size: 22px; opacity: .45; }
+  .stat-statement {
+    font-family: var(--serif); font-size: 15px; font-weight: 600;
+    color: var(--ink); line-height: 1.25;
+  }
+  .stat-statement em { font-style: normal; color: var(--green); }
+  .stat-icon { font-size: 20px; opacity: .45; flex-shrink: 0; margin-left: 12px; }
 
   .hero-scroll {
     position: absolute; bottom: 40px; left: var(--pad);
@@ -93,7 +90,9 @@
 
   /* Teaser */
   #teaser { padding: 100px var(--pad); background: white; }
+  @media (max-width: 768px) { #teaser { padding: 60px var(--pad); } }
   .teaser-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 56px; }
+  @media (max-width: 768px) { .teaser-grid { grid-template-columns: 1fr; gap: 48px; } }
   .teaser-proj {
     display: flex; gap: 22px; align-items: flex-start;
     padding: 26px 0; border-bottom: 1px solid var(--rule);
@@ -128,6 +127,7 @@
 <nav>
   <a class="nav-logo" href="index.html">A<span>.</span>K</a>
   <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
     <li><a href="pages/work.html">Work</a></li>
     <li><a href="pages/thoughts.html">Thoughts</a></li>
     <li><a href="pages/about.html">About</a></li>
@@ -139,21 +139,16 @@
 <section id="hero">
   <div class="hero-bg-text">AK</div>
   <div class="hero-left">
-    <div class="hero-badge">
-      <span class="hero-badge-dot"></span>
-      Incoming Focus Fellow @ Jane Street · May 2026
-    </div>
     <div class="hero-eyebrow">
       <span class="hero-eyebrow-line"></span>
-      CS &amp; Statistics @ Rice University · Houston, TX
+      CS &amp; Statistics @ Rice · Houston, TX
     </div>
     <h1 class="hero-h1">
       <strong>Adonai</strong>
       <em>Kidane.</em>
     </h1>
     <p class="hero-desc">
-      Sophomore at Rice building at the edge of <mark>markets, math, and code</mark>.
-      From fraud detection pipelines to legal AI — I chase problems that feel impossible and ship anyway.
+      Student, builder, overthinker in the best way. I chase <mark>problems that feel impossible</mark> and ship things that work — sometimes on the first try.
     </p>
     <div class="hero-actions">
       <a class="btn-primary" href="pages/work.html">See my work</a>
@@ -167,29 +162,29 @@
   <div class="hero-right">
     <div class="stat-card">
       <div>
-        <div class="stat-num">3<span style="font-size:18px;color:var(--green)">rd</span></div>
-        <div class="stat-label">Rice × Anthropic Hackathon</div>
+        <div class="stat-label-top">Hackathon</div>
+        <div class="stat-statement">3rd place, Rice × Anthropic Claude Hackathon</div>
       </div>
       <div class="stat-icon">🏆</div>
     </div>
     <div class="stat-card">
       <div>
-        <div class="stat-num"><span class="count-num" data-target="91" data-suffix="%">0</span></div>
-        <div class="stat-label">Model accuracy (fraud detection)</div>
+        <div class="stat-label-top">ML at Rice</div>
+        <div class="stat-statement">Fraud model accuracy <em>79% → 91%</em>, 6× better recall</div>
       </div>
       <div class="stat-icon">🧠</div>
     </div>
     <div class="stat-card">
       <div>
-        <div class="stat-num"><span class="count-num" data-target="8" data-suffix="s">0</span></div>
-        <div class="stat-label">Legal doc review (was days)</div>
+        <div class="stat-label-top">ClauseCloud</div>
+        <div class="stat-statement">Legal doc review: <em>days → 8 seconds</em></div>
       </div>
       <div class="stat-icon">⚡</div>
     </div>
     <div class="stat-card">
       <div>
-        <div class="stat-num"><span class="count-num" data-target="50" data-suffix="%">0</span></div>
-        <div class="stat-label">Power overhead reduction (FPGA)</div>
+        <div class="stat-label-top">Edge ML Research</div>
+        <div class="stat-statement">Power overhead cut <em>50%</em> vs. baseline on FPGA</div>
       </div>
       <div class="stat-icon">📉</div>
     </div>
@@ -203,23 +198,37 @@
     <span class="marquee-item">Python</span><span class="marquee-dot">✦</span>
     <span class="marquee-item">JavaScript</span><span class="marquee-dot">✦</span>
     <span class="marquee-item">C++</span><span class="marquee-dot">✦</span>
-    <span class="marquee-item">React</span><span class="marquee-dot">✦</span>
-    <span class="marquee-item">Jane Street</span><span class="marquee-dot">✦</span>
-    <span class="marquee-item">Machine Learning</span><span class="marquee-dot">✦</span>
-    <span class="marquee-item">Quantitative Finance</span><span class="marquee-dot">✦</span>
-    <span class="marquee-item">Rice University</span><span class="marquee-dot">✦</span>
-    <span class="marquee-item">Node.js</span><span class="marquee-dot">✦</span>
     <span class="marquee-item">SQL</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">React</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Node.js</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">HTML</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Tailwind CSS</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">R</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Chart.js</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Express.js</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Git</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Docker</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Vercel</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Arduino</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Fusion 360</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">VS Code</span><span class="marquee-dot">✦</span>
     <span class="marquee-item">Python</span><span class="marquee-dot">✦</span>
     <span class="marquee-item">JavaScript</span><span class="marquee-dot">✦</span>
     <span class="marquee-item">C++</span><span class="marquee-dot">✦</span>
-    <span class="marquee-item">React</span><span class="marquee-dot">✦</span>
-    <span class="marquee-item">Jane Street</span><span class="marquee-dot">✦</span>
-    <span class="marquee-item">Machine Learning</span><span class="marquee-dot">✦</span>
-    <span class="marquee-item">Quantitative Finance</span><span class="marquee-dot">✦</span>
-    <span class="marquee-item">Rice University</span><span class="marquee-dot">✦</span>
-    <span class="marquee-item">Node.js</span><span class="marquee-dot">✦</span>
     <span class="marquee-item">SQL</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">React</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Node.js</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">HTML</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Tailwind CSS</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">R</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Chart.js</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Express.js</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Git</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Docker</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Vercel</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Arduino</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Fusion 360</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">VS Code</span><span class="marquee-dot">✦</span>
   </div>
 </div>
 
@@ -233,7 +242,7 @@
       </a>
       <a class="teaser-proj reveal reveal-delay-2" href="pages/work.html">
         <span class="teaser-proj-num">02</span>
-        <div><div class="teaser-proj-title">ML Fraud Detection</div><div class="teaser-proj-tag">Python · Feature Engineering · ML</div></div>
+        <div><div class="teaser-proj-title">ML Fraud Detection</div><div class="teaser-proj-tag">Python · Feature Engineering</div></div>
       </a>
       <a class="teaser-proj reveal reveal-delay-3" href="pages/work.html">
         <span class="teaser-proj-num">03</span>
@@ -246,13 +255,13 @@
     </div>
     <div class="reveal reveal-delay-2">
       <p class="teaser-intro">
-        I build things that <strong>actually ship</strong> — from an AI legal review tool that cuts processing from days to 8 seconds, to ML pipelines with 91% accuracy. Currently going deeper into <strong>quant finance</strong> as a Jane Street Focus Fellow.
+        A mix of AI tools, ML systems, and full-stack apps — things I built because I was <strong>genuinely curious</strong> about the problem.
       </p>
       <a class="btn-primary" href="pages/work.html" style="display:inline-block; margin-bottom:36px;">View all work →</a>
       <div class="section-tag"><span class="section-tag-line"></span>Latest thought</div>
       <a class="thought-teaser" href="pages/thoughts.html">
         <div class="thought-teaser-label">From the blog</div>
-        <div class="thought-teaser-title">What Jane Street taught me about probabilistic thinking in my first week</div>
+        <div class="thought-teaser-title">What a week at Jane Street taught me about thinking under uncertainty</div>
         <div class="thought-teaser-date">May 2026 · 5 min read</div>
       </a>
     </div>
@@ -262,6 +271,7 @@
 <footer>
   <a class="footer-logo" href="index.html">A<span>.</span>K</a>
   <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
     <li><a href="pages/work.html">Work</a></li>
     <li><a href="pages/thoughts.html">Thoughts</a></li>
     <li><a href="pages/about.html">About</a></li>

@@ -7,22 +7,19 @@
 <link rel="stylesheet" href="../css/style.css">
 <style>
   .thoughts-page { padding: 0 var(--pad) 120px; }
-  .filter-bar { display: flex; align-items: center; gap: 10px; padding: 32px 0 40px; border-bottom: 1px solid var(--rule); flex-wrap: wrap; }
-  .filter-label { font-size: 11px; color: var(--ink-muted); letter-spacing: .08em; margin-right: 4px; }
-  .filter-btn {
-    font-size: 11px; letter-spacing: .06em; border: 1px solid var(--rule); border-radius: 20px;
-    padding: 5px 14px; background: none; cursor: none; color: var(--ink-soft); font-family: var(--sans);
-    transition: background .2s, border-color .2s, color .2s;
-  }
-  .filter-btn:hover, .filter-btn.active { background: var(--green); border-color: var(--green); color: var(--cream); }
 
-  .posts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; }
+  .posts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; margin-top: 16px; }
+  @media (max-width: 640px) { .posts-grid { grid-template-columns: 1fr; } }
+
   .post-card {
     padding: 44px 0; border-bottom: 1px solid var(--rule);
     text-decoration: none; color: inherit; display: block; transition: padding-left .25s;
   }
   .post-card:nth-child(odd) { padding-right: 44px; border-right: 1px solid var(--rule); }
   .post-card:nth-child(even) { padding-left: 44px; }
+  @media (max-width: 640px) {
+    .post-card:nth-child(odd), .post-card:nth-child(even) { padding-right: 0; padding-left: 0; border-right: none; }
+  }
   .post-card:hover { padding-left: 8px; }
   .post-card:nth-child(odd):hover { padding-left: 0; padding-right: 36px; }
 
@@ -30,6 +27,7 @@
     grid-column: 1/-1; display: grid; grid-template-columns: 1fr 1fr;
     gap: 48px; align-items: center; padding: 56px 0; border-right: none;
   }
+  @media (max-width: 640px) { .post-card.featured { grid-template-columns: 1fr; gap: 24px; } }
   .post-card.featured:hover { padding-left: 0; }
   .post-featured-img {
     aspect-ratio: 16/9; border-radius: 4px; background: var(--green-light); overflow: hidden;
@@ -42,20 +40,18 @@
   .post-tag { display: inline-block; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--green); margin-bottom: 10px; }
   .post-title { font-family: var(--serif); font-size: clamp(18px, 2.2vw, 26px); font-weight: 400; color: var(--ink); line-height: 1.2; margin-bottom: 10px; letter-spacing: -.01em; transition: color .25s; }
   .post-card:hover .post-title { color: var(--green); }
-  .post-card.featured .post-title { font-size: clamp(26px, 3.2vw, 40px); font-weight: 600; }
-  .post-excerpt { font-size: 13px; color: var(--ink-muted); line-height: 1.75; font-weight: 300; margin-bottom: 14px; }
+  .post-card.featured .post-title { font-size: clamp(24px, 3vw, 38px); font-weight: 600; }
+  .post-excerpt { font-size: 13px; color: var(--ink-muted); line-height: 1.75; font-weight: 300; margin-bottom: 12px; }
   .post-meta { display: flex; align-items: center; gap: 10px; font-size: 11px; color: var(--ink-faint); }
   .post-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--ink-faint); }
 
-  .newsletter { margin-top: 80px; background: var(--ink); border-radius: 4px; padding: 52px 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
-  .newsletter-h { font-family: var(--serif); font-size: clamp(26px, 3vw, 38px); font-weight: 300; color: var(--cream); line-height: 1.15; }
-  .newsletter-h em { font-style: italic; color: var(--green-glow); }
-  .newsletter-sub { font-size: 14px; color: rgba(250,248,244,.4); font-weight: 300; margin-top: 10px; line-height: 1.75; }
-  .nl-input { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); color: var(--cream); font-family: var(--sans); font-size: 15px; font-weight: 300; padding: 14px 16px; border-radius: 2px; outline: none; transition: border-color .25s; width: 100%; margin-bottom: 12px; }
-  .nl-input::placeholder { color: rgba(250,248,244,.2); }
-  .nl-input:focus { border-color: var(--green-glow); }
-  .nl-btn { background: var(--green); color: var(--cream); font-family: var(--sans); font-size: 13px; font-weight: 400; letter-spacing: .06em; padding: 14px 24px; border: none; border-radius: 2px; cursor: none; transition: background .25s; }
-  .nl-btn:hover { background: var(--green-glow); }
+  .coming-soon {
+    margin-top: 64px; padding: 48px; background: white; border: 1px solid var(--rule);
+    border-radius: 4px; text-align: center;
+  }
+  .coming-soon-icon { font-size: 32px; margin-bottom: 14px; }
+  .coming-soon-title { font-family: var(--serif); font-size: 24px; font-weight: 400; color: var(--ink); margin-bottom: 8px; }
+  .coming-soon-sub { font-size: 14px; color: var(--ink-muted); font-weight: 300; max-width: 400px; margin: 0 auto; line-height: 1.75; }
 </style>
 </head>
 <body>
@@ -64,6 +60,7 @@
 <nav>
   <a class="nav-logo" href="../index.html">A<span>.</span>K</a>
   <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
     <li><a href="work.html">Work</a></li>
     <li><a href="thoughts.html">Thoughts</a></li>
     <li><a href="about.html">About</a></li>
@@ -74,86 +71,63 @@
 
 <div class="page-hero">
   <div class="section-tag reveal"><span class="section-tag-line"></span>Thoughts</div>
-  <h1 class="page-hero-h1 reveal reveal-delay-1">Things I'm <em>thinking about.</em></h1>
-  <p class="page-hero-sub reveal reveal-delay-2">Markets, code, quant finance, and whatever else won't leave me alone. No schedule — just when I have something worth saying.</p>
+  <h1 class="page-hero-h1 reveal reveal-delay-1">What's on <em>my mind.</em></h1>
+  <p class="page-hero-sub reveal reveal-delay-2">Technical, personal, random. Whatever's worth writing down.</p>
 </div>
 
 <div class="thoughts-page">
-  <div class="filter-bar reveal">
-    <span class="filter-label">Filter:</span>
-    <button class="filter-btn active">All</button>
-    <button class="filter-btn">Quant</button>
-    <button class="filter-btn">Engineering</button>
-    <button class="filter-btn">Markets</button>
-    <button class="filter-btn">Life</button>
-  </div>
-
   <div class="posts-grid">
+
+    <!-- FEATURED -->
     <a class="post-card featured reveal" href="#">
       <div class="post-featured-img">
-        <!-- <img src="../images/thought-1.jpg" alt="Jane Street"> -->
-        <div class="ph-icon">📝</div>
+        <!-- <img src="../images/thought-1.jpg" alt=""> -->
+        <div class="ph-icon">✍️</div>
         <div class="ph-label">Add cover image</div>
       </div>
       <div>
         <span class="post-tag">Quant · Jane Street</span>
-        <h2 class="post-title">What Jane Street taught me about probabilistic thinking in my first week</h2>
-        <p class="post-excerpt">I've taken probability courses. I thought I understood expected value. I was wrong. Here's what actually engaging with traders who live and die by these ideas changes about how you think.</p>
+        <h2 class="post-title">What a week at Jane Street taught me about thinking under uncertainty</h2>
+        <p class="post-excerpt">I thought I understood expected value. I was wrong. Here's what actually spending time with people who live by it does to how you think.</p>
         <div class="post-meta"><span>May 2026</span><span class="post-meta-dot"></span><span>5 min read</span></div>
       </div>
     </a>
 
     <a class="post-card reveal reveal-delay-1" href="#">
       <span class="post-tag">Engineering</span>
-      <h2 class="post-title">Building ClauseCloud: what I learned winning a hackathon with Claude API</h2>
-      <p class="post-excerpt">From zero to 3rd place in under 24 hours. What worked, what nearly broke us, and why deterministic JSON schema output is underrated.</p>
+      <h2 class="post-title">Building ClauseCloud: what I learned winning a hackathon with the Claude API</h2>
+      <p class="post-excerpt">24 hours, one idea, and a lot of debugging. What worked, what didn't, and what I'd do differently.</p>
       <div class="post-meta"><span>November 2025</span><span class="post-meta-dot"></span><span>7 min read</span></div>
     </a>
 
     <a class="post-card reveal reveal-delay-2" href="#">
-      <span class="post-tag">Quant</span>
-      <h2 class="post-title">Why I think market microstructure should be required CS reading</h2>
-      <p class="post-excerpt">The order book is a distributed system, a game theory problem, and a psychology study all at once. Engineers are missing out.</p>
-      <div class="post-meta"><span>April 2026</span><span class="post-meta-dot"></span><span>6 min read</span></div>
-    </a>
-
-    <a class="post-card reveal reveal-delay-1" href="#">
       <span class="post-tag">Life</span>
       <h2 class="post-title">On being indecisive and shipping things anyway</h2>
-      <p class="post-excerpt">I've changed direction on projects roughly 47 times. Things still got shipped. Here's the mental model that makes that possible.</p>
+      <p class="post-excerpt">I've changed direction on projects roughly 47 times. Things still got shipped. Here's how.</p>
       <div class="post-meta"><span>March 2026</span><span class="post-meta-dot"></span><span>4 min read</span></div>
     </a>
 
-    <a class="post-card reveal reveal-delay-2" href="#">
-      <span class="post-tag">Engineering</span>
-      <h2 class="post-title">Feature engineering that actually moved the needle (fraud detection)</h2>
-      <p class="post-excerpt">How going from 0.79 to 0.91 accuracy wasn't about the model — it was about understanding what the data was actually trying to say.</p>
+    <a class="post-card reveal reveal-delay-1" href="#">
+      <span class="post-tag">ML</span>
+      <h2 class="post-title">Feature engineering that actually moved the needle</h2>
+      <p class="post-excerpt">How going from 79% to 91% accuracy wasn't about the model — it was about understanding what the data was saying.</p>
       <div class="post-meta"><span>February 2026</span><span class="post-meta-dot"></span><span>8 min read</span></div>
     </a>
 
-    <a class="post-card reveal reveal-delay-3" href="#">
-      <span class="post-tag">Markets</span>
-      <h2 class="post-title">MIT MITES changed how I see what's possible — here's how</h2>
-      <p class="post-excerpt">1.5% acceptance rate. Two weeks. The moment I realized the ceiling I'd set for myself was completely made up.</p>
-      <div class="post-meta"><span>January 2026</span><span class="post-meta-dot"></span><span>5 min read</span></div>
-    </a>
   </div>
 
-  <div class="newsletter reveal">
-    <div>
-      <h2 class="newsletter-h">Get new thoughts <em>in your inbox.</em></h2>
-      <p class="newsletter-sub">No schedule. No fluff. Just the occasional piece when I have something worth sharing.</p>
-    </div>
-    <div>
-      <input class="nl-input" type="email" placeholder="your@email.com">
-      <button class="nl-btn">Subscribe →</button>
-    </div>
+  <div class="coming-soon reveal">
+    <div class="coming-soon-icon">📬</div>
+    <div class="coming-soon-title">More on the way</div>
+    <div class="coming-soon-sub">This is a space for whatever's on my mind — technical stuff, things I'm learning, observations. Check back.</div>
   </div>
+
 </div>
 
 <footer>
   <a class="footer-logo" href="../index.html">A<span>.</span>K</a>
   <ul class="footer-links">
+    <li><a href="../index.html">Home</a></li>
     <li><a href="work.html">Work</a></li>
     <li><a href="thoughts.html">Thoughts</a></li>
     <li><a href="about.html">About</a></li>
@@ -162,13 +136,5 @@
   <span class="footer-copy">© 2026 Adonai Kidane</span>
 </footer>
 <script src="../js/shared.js"></script>
-<script>
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    });
-  });
-</script>
 </body>
 </html>

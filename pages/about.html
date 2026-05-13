@@ -8,6 +8,8 @@
 <style>
   .about-page { padding: 0 var(--pad) 120px; }
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; padding: 72px 0; border-bottom: 1px solid var(--rule); }
+  @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } }
+
   .about-photo-wrap { position: sticky; top: 100px; }
   .about-photo {
     width: 100%; aspect-ratio: 3/4; border-radius: 4px; overflow: hidden;
@@ -23,34 +25,48 @@
   .about-body strong { color: var(--green); font-weight: 500; }
 
   .about-facts { margin: 36px 0; }
-  .fact-row {
-    display: flex; justify-content: space-between; align-items: baseline;
-    padding: 15px 0; border-bottom: 1px solid var(--rule); transition: padding-left .2s;
-  }
+  .fact-row { display: flex; justify-content: space-between; align-items: baseline; padding: 15px 0; border-bottom: 1px solid var(--rule); transition: padding-left .2s; }
   .fact-row:first-child { border-top: 1px solid var(--rule); }
   .fact-row:hover { padding-left: 8px; }
   .fact-key { font-size: 11px; color: var(--ink-muted); letter-spacing: .08em; text-transform: uppercase; }
-  .fact-val { font-family: var(--serif); font-size: 18px; font-weight: 400; color: var(--ink); text-align: right; }
+  .fact-val { font-family: var(--serif); font-size: 17px; font-weight: 400; color: var(--ink); text-align: right; }
 
   /* Honors */
   .honors-section { padding: 72px 0; border-bottom: 1px solid var(--rule); }
-  .honors-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 48px; }
-  .honor-card {
-    border: 1px solid var(--rule); border-radius: 4px; padding: 24px 20px;
-    transition: border-color .25s, transform .2s;
-  }
+  .honors-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 48px; }
+  @media (max-width: 768px) { .honors-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .honors-grid { grid-template-columns: 1fr; } }
+  .honor-card { border: 1px solid var(--rule); border-radius: 4px; padding: 22px 18px; transition: border-color .25s, transform .2s; }
   .honor-card:hover { border-color: var(--green); transform: translateY(-4px); }
-  .honor-icon { font-size: 24px; margin-bottom: 10px; }
-  .honor-title { font-family: var(--serif); font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
-  .honor-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.6; font-weight: 300; }
+  .honor-issuer { font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--green); margin-bottom: 6px; font-weight: 400; }
+  .honor-title { font-family: var(--serif); font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px; line-height: 1.25; }
+  .honor-date { font-size: 11px; color: var(--ink-faint); }
+
+  /* Involvement */
+  .involve-section { padding: 72px 0; border-bottom: 1px solid var(--rule); }
+  .involve-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; margin-top: 48px; }
+  @media (max-width: 640px) { .involve-grid { grid-template-columns: 1fr; } }
+  .involve-item {
+    padding: 24px 0; border-bottom: 1px solid var(--rule);
+    display: flex; gap: 18px; align-items: flex-start;
+  }
+  .involve-item:nth-child(odd) { padding-right: 36px; border-right: 1px solid var(--rule); }
+  .involve-item:nth-child(even) { padding-left: 36px; }
+  @media (max-width: 640px) {
+    .involve-item:nth-child(odd), .involve-item:nth-child(even) { padding-right: 0; padding-left: 0; border-right: none; }
+  }
+  .involve-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  .involve-title { font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+  .involve-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.65; font-weight: 300; }
 
   /* Outside */
   .outside-section { padding: 72px 0; }
-  .outside-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 48px; }
-  .outside-card { border: 1px solid var(--rule); border-radius: 4px; padding: 24px 20px; transition: border-color .25s, transform .2s; }
+  .outside-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 48px; }
+  @media (max-width: 768px) { .outside-grid { grid-template-columns: 1fr 1fr; } }
+  .outside-card { border: 1px solid var(--rule); border-radius: 4px; padding: 22px 18px; transition: border-color .25s, transform .2s; }
   .outside-card:hover { border-color: var(--green); transform: translateY(-4px); }
-  .outside-icon { font-size: 26px; margin-bottom: 10px; }
-  .outside-title { font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+  .outside-icon { font-size: 24px; margin-bottom: 8px; }
+  .outside-title { font-family: var(--serif); font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
   .outside-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.6; font-weight: 300; }
 </style>
 </head>
@@ -60,6 +76,7 @@
 <nav>
   <a class="nav-logo" href="../index.html">A<span>.</span>K</a>
   <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
     <li><a href="work.html">Work</a></li>
     <li><a href="thoughts.html">Thoughts</a></li>
     <li><a href="about.html">About</a></li>
@@ -70,48 +87,38 @@
 
 <div class="page-hero">
   <div class="section-tag reveal"><span class="section-tag-line"></span>About</div>
-  <h1 class="page-hero-h1 reveal reveal-delay-1">The person <em>behind it.</em></h1>
-  <p class="page-hero-sub reveal reveal-delay-2">CS & Statistics sophomore at Rice. Warm, adventurous, organized chaos — perpetually building things.</p>
+  <h1 class="page-hero-h1 reveal reveal-delay-1">Just a person <em>figuring it out.</em></h1>
 </div>
 
 <div class="about-page">
   <div class="about-grid">
     <div class="about-photo-wrap reveal">
       <div class="about-photo">
-        <!-- To add your photo: delete the two lines below and uncomment the next line -->
+        <!-- To add photo: delete the two div lines below, uncomment the img line -->
         <div class="ph-icon">🧑🏾</div>
-        <div class="ph-label">Add your photo here</div>
+        <div class="ph-label">Add your photo</div>
         <!-- <img src="../images/photo.jpg" alt="Adonai Kidane"> -->
       </div>
-      <p class="about-photo-caption">Rice University, Houston TX. Usually in the middle of three projects, a conversation about markets, and a half-eaten meal.</p>
+      <p class="about-photo-caption">Originally from Denver. Currently in Houston. Thinking about a lot of things at once, as usual.</p>
     </div>
 
     <div>
       <p class="about-body reveal">
-        I'm a sophomore at <strong>Rice University</strong> studying Computer Science and Statistics —
-        which is a fancy way of saying I spend my time thinking about data, systems, and how to make them do interesting things.
+        I'm a student at <strong>Rice University</strong> studying Computer Science and Statistics — interested in data, systems, and figuring out what you can actually do with them.
       </p>
       <p class="about-body reveal reveal-delay-1">
-        My path took a sharp turn toward <strong>quantitative finance</strong> when I realized markets are just
-        the world's most chaotic dataset. Now I'm heading to <strong>Jane Street</strong> as a Focus Fellow,
-        which still feels unreal if I'm honest.
+        I think markets are just the world's most chaotic dataset. Not because they're unpredictable — but because there are too many confounding variables. If you could isolate the microeconomic signals that actually move things, you'd have something. That's the puzzle I keep coming back to.
       </p>
       <p class="about-body reveal reveal-delay-2">
-        I've shipped AI legal tools, built fraud detection systems, done ML research on edge hardware,
-        and won a hackathon with Claude. I like problems that feel impossible — the kind where you're not
-        sure if you'll figure it out until suddenly you do.
-      </p>
-      <p class="about-body reveal reveal-delay-3">
-        Personality-wise: <strong>warm, indecisive in the best way</strong>, organized when it counts,
-        and genuinely excited about almost everything. I'm a Martel College rep, in NSBE,
-        the Data Science Club, Robotics, and somehow also Badminton and Powerlifting.
+        I like problems that feel impossible — the kind where you're not sure you'll figure it out until suddenly you do.
       </p>
 
       <div class="about-facts reveal reveal-delay-2">
-        <div class="fact-row"><span class="fact-key">School</span><span class="fact-val">Rice University '28</span></div>
-        <div class="fact-row"><span class="fact-key">Major</span><span class="fact-val">CS & Statistics</span></div>
+        <div class="fact-row"><span class="fact-key">School</span><span class="fact-val">Rice University</span></div>
+        <div class="fact-row"><span class="fact-key">Major</span><span class="fact-val">Computer Science, Statistics</span></div>
+        <div class="fact-row"><span class="fact-key">From</span><span class="fact-val">Denver, CO</span></div>
         <div class="fact-row"><span class="fact-key">Based in</span><span class="fact-val">Houston, TX</span></div>
-        <div class="fact-row"><span class="fact-key">Next up</span><span class="fact-val">Jane Street, NYC</span></div>
+        <div class="fact-row"><span class="fact-key">Currently</span><span class="fact-val">SWE Intern @ Goff Financial Group</span></div>
         <div class="fact-row"><span class="fact-key">Email</span><span class="fact-val">adonai@rice.edu</span></div>
       </div>
 
@@ -122,37 +129,131 @@
   <!-- HONORS -->
   <div class="honors-section">
     <div class="section-tag reveal"><span class="section-tag-line"></span>Recognition</div>
-    <h2 class="section-h2 reveal reveal-delay-1">Honors &amp; <em>scholarships.</em></h2>
+    <h2 class="section-h2 reveal reveal-delay-1">Honors &amp; <em>awards.</em></h2>
     <div class="honors-grid">
       <div class="honor-card reveal reveal-delay-1">
-        <div class="honor-icon">🏛</div>
-        <div class="honor-title">Trustee Distinguished Scholar</div>
-        <div class="honor-desc">Rice University's highest merit scholarship, awarded to exceptional incoming students.</div>
+        <div class="honor-issuer">Anthropic (claude.ai) · Nov 2025</div>
+        <div class="honor-title">3rd Place — Rice × Anthropic Claude Hackathon</div>
+        <div class="honor-date">Associated with Rice University</div>
       </div>
       <div class="honor-card reveal reveal-delay-2">
-        <div class="honor-icon">📚</div>
-        <div class="honor-title">Sachs Foundation Scholar</div>
-        <div class="honor-desc">Scholarship supporting high-achieving students of color pursuing higher education.</div>
+        <div class="honor-issuer">Rice University · Aug 2025</div>
+        <div class="honor-title">Max H. Jacobs Scholarship</div>
+        <div class="honor-date">George R. Brown School of Engineering</div>
       </div>
       <div class="honor-card reveal reveal-delay-3">
-        <div class="honor-icon">🔬</div>
-        <div class="honor-title">MIT MITES Summer '24</div>
-        <div class="honor-desc">Selected for MIT's elite pre-college STEM program with a 1.5% acceptance rate.</div>
+        <div class="honor-issuer">The Sachs Foundation · Jun 2025</div>
+        <div class="honor-title">Sachs Foundation Scholar</div>
+        <div class="honor-date">Supporting Black Coloradans in higher education since 1931</div>
       </div>
       <div class="honor-card reveal reveal-delay-1">
-        <div class="honor-icon">🎓</div>
-        <div class="honor-title">Jack Kent Cooke Scholar</div>
-        <div class="honor-desc">One of the nation's largest private scholarships for high-achieving students with financial need.</div>
+        <div class="honor-issuer">The Sachs Foundation · May 2025</div>
+        <div class="honor-title">Morris Esmiol Jr. Scholarship</div>
+        <div class="honor-date">Awarded to 1 Sachs scholar with excellence in STEM</div>
       </div>
       <div class="honor-card reveal reveal-delay-2">
-        <div class="honor-icon">🏆</div>
-        <div class="honor-title">MHJ Scholar</div>
-        <div class="honor-desc">Additional merit recognition at Rice University.</div>
+        <div class="honor-issuer">Rice University · Apr 2025</div>
+        <div class="honor-title">Trustee Distinguished Scholar</div>
+        <div class="honor-date">Rice's highest merit scholarship</div>
       </div>
       <div class="honor-card reveal reveal-delay-3">
-        <div class="honor-icon">🥉</div>
-        <div class="honor-title">Hackathon — 3rd Place</div>
-        <div class="honor-desc">Rice × Anthropic Claude Hackathon. ClauseCloud — legal AI review tool.</div>
+        <div class="honor-issuer">Aspire Foundation · Apr 2025</div>
+        <div class="honor-title">Community Impact Scholarship</div>
+        <div class="honor-date">Commitment to service as a graduating APS senior</div>
+      </div>
+      <div class="honor-card reveal reveal-delay-1">
+        <div class="honor-issuer">Jack Kent Cooke Foundation · Feb 2025</div>
+        <div class="honor-title">Jack Kent Cooke College Scholarship Semifinalist</div>
+        <div class="honor-date">One of the nation's largest private scholarships</div>
+      </div>
+      <div class="honor-card reveal reveal-delay-2">
+        <div class="honor-issuer">Questbridge · Nov 2024</div>
+        <div class="honor-title">National College Match Finalist</div>
+        <div class="honor-date"></div>
+      </div>
+      <div class="honor-card reveal reveal-delay-3">
+        <div class="honor-issuer">College Board · Oct 2024</div>
+        <div class="honor-title">National African American Recognition Program</div>
+        <div class="honor-date">College Match Finalist</div>
+      </div>
+      <div class="honor-card reveal reveal-delay-1">
+        <div class="honor-issuer">College Board · Aug 2024</div>
+        <div class="honor-title">National First Generation Recognition Program</div>
+        <div class="honor-date"></div>
+      </div>
+      <div class="honor-card reveal reveal-delay-2">
+        <div class="honor-issuer">Vista Peak NHS · Apr 2024</div>
+        <div class="honor-title">Leadership – Service Award</div>
+        <div class="honor-date">Vista Peak Preparatory National Honor Society</div>
+      </div>
+      <div class="honor-card reveal reveal-delay-3">
+        <div class="honor-issuer">Prince George's County · Jan 2021</div>
+        <div class="honor-title">1st Place — Annapolis Annual Bean Bag Launcher</div>
+        <div class="honor-date">Farthest launch from a 1 ft³ configuration</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INVOLVEMENT -->
+  <div class="involve-section">
+    <div class="section-tag reveal"><span class="section-tag-line"></span>Involvement</div>
+    <h2 class="section-h2 reveal reveal-delay-1">Beyond the <em>classroom.</em></h2>
+    <div class="involve-grid">
+      <div class="involve-item reveal reveal-delay-1">
+        <div class="involve-icon">🤝</div>
+        <div>
+          <div class="involve-title">Kramerica Gives</div>
+          <div class="involve-desc">Community giving and service initiatives.</div>
+        </div>
+      </div>
+      <div class="involve-item reveal reveal-delay-2">
+        <div class="involve-icon">🍽</div>
+        <div>
+          <div class="involve-title">Project Angel Heart</div>
+          <div class="involve-desc">Preparing and delivering meals for people affected by serious illness.</div>
+        </div>
+      </div>
+      <div class="involve-item reveal reveal-delay-1">
+        <div class="involve-icon">🥫</div>
+        <div>
+          <div class="involve-title">Food Bank of the Rockies</div>
+          <div class="involve-desc">Volunteering to fight food insecurity across Colorado communities.</div>
+        </div>
+      </div>
+      <div class="involve-item reveal reveal-delay-2">
+        <div class="involve-icon">🎓</div>
+        <div>
+          <div class="involve-title">NSBE</div>
+          <div class="involve-desc">National Society of Black Engineers — Rice chapter.</div>
+        </div>
+      </div>
+      <div class="involve-item reveal reveal-delay-1">
+        <div class="involve-icon">🤖</div>
+        <div>
+          <div class="involve-title">Rice Robotics</div>
+          <div class="involve-desc">Building and competing. Also previously a VEX Robotics State Qualifier (twice).</div>
+        </div>
+      </div>
+      <div class="involve-item reveal reveal-delay-2">
+        <div class="involve-icon">📊</div>
+        <div>
+          <div class="involve-title">Rice Data Science Club</div>
+          <div class="involve-desc">Exploring the intersection of data and everything else.</div>
+        </div>
+      </div>
+      <div class="involve-item reveal reveal-delay-1">
+        <div class="involve-icon">🏛</div>
+        <div>
+          <div class="involve-title">Martel Class Representative</div>
+          <div class="involve-desc">Representing my class at Rice's Martel College.</div>
+        </div>
+      </div>
+      <div class="involve-item reveal reveal-delay-2">
+        <div class="involve-icon">💧</div>
+        <div>
+          <div class="involve-title">Water Conservation Certified</div>
+          <div class="involve-desc">Chesapeake Bay Water Conservation — because caring about the planet matters.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -160,45 +261,47 @@
   <!-- OUTSIDE -->
   <div class="outside-section">
     <div class="section-tag reveal"><span class="section-tag-line"></span>Outside class</div>
-    <h2 class="section-h2 reveal reveal-delay-1">What makes me <em>me.</em></h2>
+    <h2 class="section-h2 reveal reveal-delay-1">A few other <em>things.</em></h2>
     <div class="outside-grid">
       <div class="outside-card reveal reveal-delay-1">
         <div class="outside-icon">✈️</div>
         <div class="outside-title">Adventure</div>
-        <div class="outside-desc">I travel whenever I can. New cities, new perspectives. It makes me a better engineer and a more interesting person.</div>
+        <div class="outside-desc">Always down for something new — new shaved ice flavor, new hiking path, whatever.</div>
       </div>
       <div class="outside-card reveal reveal-delay-2">
         <div class="outside-icon">🚴</div>
         <div class="outside-title">Triathlon & Cycling</div>
-        <div class="outside-desc">Rice Cycling and Triathlon Club member. I like things that test how much discomfort you can turn into discipline.</div>
+        <div class="outside-desc">Rice Cycling and Triathlon Club. Good reminder that hard things are worth doing.</div>
       </div>
       <div class="outside-card reveal reveal-delay-3">
         <div class="outside-icon">🏋️</div>
         <div class="outside-title">Powerlifting</div>
-        <div class="outside-desc">Rice Powerlifting Club. The bar doesn't care about your excuses — good reminder when debugging at 2am.</div>
+        <div class="outside-desc">Rice Powerlifting Club. The bar doesn't care about your excuses.</div>
       </div>
       <div class="outside-card reveal reveal-delay-1">
         <div class="outside-icon">🌱</div>
-        <div class="outside-title">Holistic Garden</div>
-        <div class="outside-desc">Rice Holistic Garden member. Surprisingly grounding to grow things when everything else is moving fast.</div>
+        <div class="outside-title">Gardening</div>
+        <div class="outside-desc">Rice Holistic Garden. Surprisingly grounding to grow something when everything else is moving fast.</div>
       </div>
       <div class="outside-card reveal reveal-delay-2">
         <div class="outside-icon">🃏</div>
         <div class="outside-title">Poker</div>
-        <div class="outside-desc">Rice Poker Club. It's basically applied probability with social engineering. Of course I love it.</div>
+        <div class="outside-desc">Rice Poker Club. Applied probability with social engineering — of course I love it.</div>
       </div>
       <div class="outside-card reveal reveal-delay-3">
         <div class="outside-icon">🏸</div>
         <div class="outside-title">Badminton</div>
-        <div class="outside-desc">Rice Badminton Club. The sport no one takes seriously until they lose to someone who does.</div>
+        <div class="outside-desc">Pickup badminton. No one takes it seriously until they lose.</div>
       </div>
     </div>
   </div>
+
 </div>
 
 <footer>
   <a class="footer-logo" href="../index.html">A<span>.</span>K</a>
   <ul class="footer-links">
+    <li><a href="../index.html">Home</a></li>
     <li><a href="work.html">Work</a></li>
     <li><a href="thoughts.html">Thoughts</a></li>
     <li><a href="about.html">About</a></li>
