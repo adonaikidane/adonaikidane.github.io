@@ -3,64 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About, Adonai Kidane</title>
 <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
-<title>About Adonai Kidane</title>
 <link rel="stylesheet" href="../css/style.css">
 <style>
   .about-page { padding: 0 var(--pad) 120px; }
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; padding: 72px 0; border-bottom: 1px solid var(--rule); }
   @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } }
-
   .about-photo-wrap { position: sticky; top: 100px; }
-  .about-photo {
-    width: 100%; aspect-ratio: 3/4; border-radius: 4px; overflow: hidden;
-    background: var(--green-light); display: flex; align-items: center; justify-content: center;
-    flex-direction: column; gap: 12px; margin-bottom: 20px;
-  }
-  .about-photo .ph-icon { font-size: 56px; opacity: .2; }
-  .about-photo .ph-label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--green); opacity: .5; }
-  .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .about-photo { width: 100%; aspect-ratio: 3/4; border-radius: 4px; overflow: hidden; margin-bottom: 20px; background: #e8f2ec; }
+  .about-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
   .about-photo-caption { font-size: 12px; color: var(--ink-muted); line-height: 1.6; font-style: italic; padding-left: 16px; border-left: 2px solid var(--green); }
-
   .about-body { font-size: 17px; color: var(--ink-soft); line-height: 1.95; font-weight: 300; margin-bottom: 20px; }
   .about-body strong { color: var(--green); font-weight: 500; }
-
   .about-facts { margin: 36px 0; }
   .fact-row { display: flex; justify-content: space-between; align-items: baseline; padding: 15px 0; border-bottom: 1px solid var(--rule); transition: padding-left .2s; }
   .fact-row:first-child { border-top: 1px solid var(--rule); }
   .fact-row:hover { padding-left: 8px; }
   .fact-key { font-size: 11px; color: var(--ink-muted); letter-spacing: .08em; text-transform: uppercase; }
   .fact-val { font-family: var(--serif); font-size: 17px; font-weight: 400; color: var(--ink); text-align: right; }
-
-  /* Honors */
   .honors-section { padding: 72px 0; border-bottom: 1px solid var(--rule); }
   .honors-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 48px; }
   @media (max-width: 768px) { .honors-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 480px) { .honors-grid { grid-template-columns: 1fr; } }
   .honor-card { border: 1px solid var(--rule); border-radius: 4px; padding: 22px 18px; transition: border-color .25s, transform .2s; }
   .honor-card:hover { border-color: var(--green); transform: translateY(-4px); }
-  .honor-issuer { font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--green); margin-bottom: 6px; font-weight: 400; }
+  .honor-issuer { font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
   .honor-title { font-family: var(--serif); font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 4px; line-height: 1.25; }
   .honor-date { font-size: 11px; color: var(--ink-faint); }
-
-  /* Involvement */
   .involve-section { padding: 72px 0; border-bottom: 1px solid var(--rule); }
   .involve-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; margin-top: 48px; }
   @media (max-width: 640px) { .involve-grid { grid-template-columns: 1fr; } }
-  .involve-item {
-    padding: 24px 0; border-bottom: 1px solid var(--rule);
-    display: flex; gap: 18px; align-items: flex-start;
-  }
+  .involve-item { padding: 22px 0; border-bottom: 1px solid var(--rule); display: flex; gap: 18px; align-items: flex-start; }
   .involve-item:nth-child(odd) { padding-right: 36px; border-right: 1px solid var(--rule); }
   .involve-item:nth-child(even) { padding-left: 36px; }
-  @media (max-width: 640px) {
-    .involve-item:nth-child(odd), .involve-item:nth-child(even) { padding-right: 0; padding-left: 0; border-right: none; }
-  }
-  .involve-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  @media (max-width: 640px) { .involve-item:nth-child(odd), .involve-item:nth-child(even) { padding-right: 0; padding-left: 0; border-right: none; } }
+  .involve-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
   .involve-title { font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
   .involve-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.65; font-weight: 300; }
-
-  /* Outside */
   .outside-section { padding: 72px 0; }
   .outside-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 48px; }
   @media (max-width: 768px) { .outside-grid { grid-template-columns: 1fr 1fr; } }
@@ -88,30 +68,27 @@
 
 <div class="page-hero">
   <div class="section-tag reveal"><span class="section-tag-line"></span>About</div>
-  <h1 class="page-hero-h1 reveal reveal-delay-1">Just a person <em>figuring it out.</em></h1>
+  <h1 class="page-hero-h1 reveal reveal-delay-1">Hi, I'm <em>Adonai.</em></h1>
 </div>
 
 <div class="about-page">
   <div class="about-grid">
     <div class="about-photo-wrap reveal">
       <div class="about-photo">
-        <!-- To add photo: delete the two div lines below, uncomment the img line -->
-        <div class="ph-icon">🧑🏾</div>
-        <div class="ph-label">Add your photo</div>
-        <!-- <img src="../images/photo.jpg" alt="Adonai Kidane"> -->
+        <img src="../images/photo.jpg" alt="Adonai Kidane">
       </div>
-      <p class="about-photo-caption">Originally from Denver. Currently in Houston. Thinking about a lot of things at once, as usual.</p>
+      <p class="about-photo-caption">Originally from Denver. Currently in Houston. That's Ireland in the background, which tells you everything you need to know.</p>
     </div>
 
     <div>
       <p class="about-body reveal">
-        I'm a student at <strong>Rice University</strong> studying Computer Science and Statistics interested in data, systems, and figuring out what you can actually do with them.
+        I'm a student at <strong>Rice University</strong> studying Computer Science and Statistics, interested in data, systems, and putting them to use where they actually produce something.
       </p>
       <p class="about-body reveal reveal-delay-1">
-        I think markets are just the world's most chaotic dataset. Not because they're unpredictable but because there are too many confounding variables. If you could isolate the microeconomic signals that actually move things, you'd have something. That's the puzzle I keep coming back to.
+        I think markets are just the world's most chaotic dataset. Not because they're unpredictable, but because there are too many confounding variables. If you could isolate the microeconomic signals that actually move things, you'd have something. That's the puzzle worth coming back to.
       </p>
       <p class="about-body reveal reveal-delay-2">
-        I like problems that feel impossible the kind where you're not sure you'll figure it out until suddenly you do.
+        I like problems that feel impossible, because you're not sure you'll figure it out until suddenly you do.
       </p>
 
       <div class="about-facts reveal reveal-delay-2">
@@ -119,22 +96,22 @@
         <div class="fact-row"><span class="fact-key">Major</span><span class="fact-val">Computer Science, Statistics</span></div>
         <div class="fact-row"><span class="fact-key">From</span><span class="fact-val">Denver, CO</span></div>
         <div class="fact-row"><span class="fact-key">Based in</span><span class="fact-val">Houston, TX</span></div>
-        <div class="fact-row"><span class="fact-key">Currently</span><span class="fact-val">SWE Intern @ Goff Financial Group</span></div>
+        <div class="fact-row"><span class="fact-key">Currently</span><span class="fact-val">SWE Intern, Goff Financial Group</span></div>
         <div class="fact-row"><span class="fact-key">Email</span><span class="fact-val">adonai@rice.edu</span></div>
+        <div class="fact-row"><span class="fact-key">Resume</span><span class="fact-val"><a href="contact.html" style="color:var(--green);text-decoration:none;font-size:15px;">Send a message</a></span></div>
       </div>
 
-      <a class="btn-primary reveal reveal-delay-3" href="contact.html">Get in touch →</a>
+      <a class="btn-primary reveal reveal-delay-3" href="contact.html">Get in touch</a>
     </div>
   </div>
 
-  <!-- HONORS -->
   <div class="honors-section">
     <div class="section-tag reveal"><span class="section-tag-line"></span>Recognition</div>
-    <h2 class="section-h2 reveal reveal-delay-1">Honors &amp; <em>awards.</em></h2>
+    <h2 class="section-h2 reveal reveal-delay-1">Honors and <em>awards.</em></h2>
     <div class="honors-grid">
       <div class="honor-card reveal reveal-delay-1">
-        <div class="honor-issuer">Anthropic (claude.ai) · Nov 2025</div>
-        <div class="honor-title">3rd Place Rice × Anthropic Claude Hackathon</div>
+        <div class="honor-issuer">Anthropic · Nov 2025</div>
+        <div class="honor-title">3rd Place, Rice x Anthropic Claude Hackathon</div>
         <div class="honor-date">Associated with Rice University</div>
       </div>
       <div class="honor-card reveal reveal-delay-2">
@@ -164,7 +141,7 @@
       </div>
       <div class="honor-card reveal reveal-delay-1">
         <div class="honor-issuer">Jack Kent Cooke Foundation · Feb 2025</div>
-        <div class="honor-title">Jack Kent Cooke College Scholarship Semifinalist</div>
+        <div class="honor-title">Jack Kent Cooke Scholarship Semifinalist</div>
         <div class="honor-date">One of the nation's largest private scholarships</div>
       </div>
       <div class="honor-card reveal reveal-delay-2">
@@ -184,82 +161,56 @@
       </div>
       <div class="honor-card reveal reveal-delay-2">
         <div class="honor-issuer">Vista Peak NHS · Apr 2024</div>
-        <div class="honor-title">Leadership – Service Award</div>
+        <div class="honor-title">Leadership Service Award</div>
         <div class="honor-date">Vista Peak Preparatory National Honor Society</div>
       </div>
       <div class="honor-card reveal reveal-delay-3">
         <div class="honor-issuer">Prince George's County · Jan 2021</div>
-        <div class="honor-title">1st Place Annapolis Annual Bean Bag Launcher</div>
-        <div class="honor-date">Farthest launch from a 1 ft³ configuration</div>
+        <div class="honor-title">1st Place, Annapolis Annual Bean Bag Launcher</div>
+        <div class="honor-date">Farthest launch from a 1 ft cubed configuration</div>
       </div>
     </div>
   </div>
 
-  <!-- INVOLVEMENT -->
   <div class="involve-section">
     <div class="section-tag reveal"><span class="section-tag-line"></span>Involvement</div>
     <h2 class="section-h2 reveal reveal-delay-1">Beyond the <em>classroom.</em></h2>
     <div class="involve-grid">
       <div class="involve-item reveal reveal-delay-1">
         <div class="involve-icon">🤝</div>
-        <div>
-          <div class="involve-title">Kramerica Gives</div>
-          <div class="involve-desc">Community giving and service initiatives.</div>
-        </div>
+        <div><div class="involve-title">Kramerica Gives</div><div class="involve-desc">Community giving and service initiatives.</div></div>
       </div>
       <div class="involve-item reveal reveal-delay-2">
         <div class="involve-icon">🍽</div>
-        <div>
-          <div class="involve-title">Project Angel Heart</div>
-          <div class="involve-desc">Preparing and delivering meals for people affected by serious illness.</div>
-        </div>
+        <div><div class="involve-title">Project Angel Heart</div><div class="involve-desc">Preparing and delivering meals for people affected by serious illness.</div></div>
       </div>
       <div class="involve-item reveal reveal-delay-1">
         <div class="involve-icon">🥫</div>
-        <div>
-          <div class="involve-title">Food Bank of the Rockies</div>
-          <div class="involve-desc">Volunteering to fight food insecurity across Colorado communities.</div>
-        </div>
+        <div><div class="involve-title">Food Bank of the Rockies</div><div class="involve-desc">Volunteering to fight food insecurity across Colorado communities.</div></div>
       </div>
       <div class="involve-item reveal reveal-delay-2">
         <div class="involve-icon">🎓</div>
-        <div>
-          <div class="involve-title">NSBE</div>
-          <div class="involve-desc">National Society of Black Engineers Rice chapter.</div>
-        </div>
+        <div><div class="involve-title">NSBE</div><div class="involve-desc">National Society of Black Engineers, Rice chapter.</div></div>
       </div>
       <div class="involve-item reveal reveal-delay-1">
         <div class="involve-icon">🤖</div>
-        <div>
-          <div class="involve-title">Rice Robotics</div>
-          <div class="involve-desc">Building and competing. Also previously a VEX Robotics State Qualifier (twice).</div>
-        </div>
+        <div><div class="involve-title">Rice Robotics</div><div class="involve-desc">Building and competing. Also a VEX Robotics State Qualifier, twice.</div></div>
       </div>
       <div class="involve-item reveal reveal-delay-2">
         <div class="involve-icon">📊</div>
-        <div>
-          <div class="involve-title">Rice Data Science Club</div>
-          <div class="involve-desc">Exploring the intersection of data and everything else.</div>
-        </div>
+        <div><div class="involve-title">Rice Data Science Club</div><div class="involve-desc">Exploring the intersection of data and everything else.</div></div>
       </div>
       <div class="involve-item reveal reveal-delay-1">
         <div class="involve-icon">🏛</div>
-        <div>
-          <div class="involve-title">Martel Class Representative</div>
-          <div class="involve-desc">Representing my class at Rice's Martel College.</div>
-        </div>
+        <div><div class="involve-title">Martel Class Representative</div><div class="involve-desc">Representing my class at Rice's Martel College.</div></div>
       </div>
       <div class="involve-item reveal reveal-delay-2">
         <div class="involve-icon">💧</div>
-        <div>
-          <div class="involve-title">Water Conservation Certified</div>
-          <div class="involve-desc">Chesapeake Bay Water Conservation because caring about the planet matters.</div>
-        </div>
+        <div><div class="involve-title">Water Conservation Certified</div><div class="involve-desc">Chesapeake Bay Water Conservation.</div></div>
       </div>
     </div>
   </div>
 
-  <!-- OUTSIDE -->
   <div class="outside-section">
     <div class="section-tag reveal"><span class="section-tag-line"></span>Outside class</div>
     <h2 class="section-h2 reveal reveal-delay-1">A few other <em>things.</em></h2>
@@ -267,11 +218,11 @@
       <div class="outside-card reveal reveal-delay-1">
         <div class="outside-icon">✈️</div>
         <div class="outside-title">Adventure</div>
-        <div class="outside-desc">Always down for something new new shaved ice flavor, new hiking path, whatever.</div>
+        <div class="outside-desc">Always down for something new, a new shaved ice flavor, a new hiking path, whatever.</div>
       </div>
       <div class="outside-card reveal reveal-delay-2">
         <div class="outside-icon">🚴</div>
-        <div class="outside-title">Triathlon & Cycling</div>
+        <div class="outside-title">Triathlon and Cycling</div>
         <div class="outside-desc">Rice Cycling and Triathlon Club. Good reminder that hard things are worth doing.</div>
       </div>
       <div class="outside-card reveal reveal-delay-3">
@@ -282,12 +233,12 @@
       <div class="outside-card reveal reveal-delay-1">
         <div class="outside-icon">🌱</div>
         <div class="outside-title">Gardening</div>
-        <div class="outside-desc">Rice Holistic Garden. Surprisingly grounding to grow something when everything else is moving fast.</div>
+        <div class="outside-desc">Rice Holistic Garden. Surprisingly grounding when everything else is moving fast.</div>
       </div>
       <div class="outside-card reveal reveal-delay-2">
         <div class="outside-icon">🃏</div>
         <div class="outside-title">Poker</div>
-        <div class="outside-desc">Rice Poker Club. Applied probability with social engineering of course I love it.</div>
+        <div class="outside-desc">Rice Poker Club. Applied probability with social engineering, of course I love it.</div>
       </div>
       <div class="outside-card reveal reveal-delay-3">
         <div class="outside-icon">🏸</div>
@@ -296,11 +247,10 @@
       </div>
     </div>
   </div>
-
 </div>
 
 <footer>
-  <a class="footer-logo" href="../index.html">A<span>.</span>K</a>
+  <a class="footer-logo" href="../index.html"><svg width="18" height="18" viewBox="0 0 32 32" fill="none" style="vertical-align:middle;margin-right:6px;margin-bottom:2px;"><polyline points="4,10 16,4 28,10 28,22 16,28 4,22 4,10" stroke="#3a8a62" stroke-width="1.8" stroke-linejoin="round" fill="none"></polyline><line x1="16" y1="4" x2="16" y2="16" stroke="#3a8a62" stroke-width="1.8"></line><line x1="4" y1="10" x2="16" y2="16" stroke="#3a8a62" stroke-width="1.8"></line><line x1="28" y1="10" x2="16" y2="16" stroke="#3a8a62" stroke-width="1.8"></line><line x1="16" y1="16" x2="16" y2="28" stroke="#666" stroke-width=".9" stroke-dasharray="2 2"></line><line x1="16" y1="16" x2="4" y2="22" stroke="#666" stroke-width=".9" stroke-dasharray="2 2"></line><line x1="16" y1="16" x2="28" y2="22" stroke="#666" stroke-width=".9" stroke-dasharray="2 2"></line></svg>AK</a>
   <ul class="footer-links">
     <li><a href="../index.html">Home</a></li>
     <li><a href="work.html">Work</a></li>
