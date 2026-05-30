@@ -3,31 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Work, Adonai Kidane</title>
+<title>Work — Adonai Kidane</title>
 <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
 <link rel="stylesheet" href="../css/style.css">
 <style>
   .work-page { padding: 0 var(--pad) 120px; }
+
+  /* Experience + Programs */
   .exp-section { padding: 64px 0; border-bottom: 1px solid var(--rule); }
   .exp-list { display: flex; flex-direction: column; margin-top: 48px; }
-  .exp-item { display: grid; grid-template-columns: 180px 1fr; gap: 32px; padding: 24px 0; border-bottom: 1px solid var(--rule); transition: padding-left .2s; }
+  .exp-item {
+    display: grid; grid-template-columns: 180px 1fr;
+    gap: 32px; padding: 24px 0; border-bottom: 1px solid var(--rule);
+    transition: padding-left .2s;
+  }
   .exp-item:hover { padding-left: 6px; }
   .exp-item:first-child { border-top: 1px solid var(--rule); }
+  @media (max-width: 640px) { .exp-item { grid-template-columns: 1fr; gap: 4px; } }
   .exp-date { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); padding-top: 4px; line-height: 1.7; }
   .exp-role { font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--ink); margin-bottom: 2px; letter-spacing: -.01em; }
   .exp-org { font-size: 13px; color: var(--green); font-weight: 400; }
+  .exp-detail { font-size: 13px; color: var(--ink-muted); font-weight: 300; margin-top: 4px; line-height: 1.6; }
+
+  /* Projects */
   .projects-section { padding: 72px 0 0; }
-  .project-card { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; padding: 72px 0; border-bottom: 1px solid var(--rule); }
+  .project-card {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+    align-items: center; padding: 72px 0; border-bottom: 1px solid var(--rule);
+  }
   .project-card:first-child { border-top: 1px solid var(--rule); }
   .project-card.reverse { direction: rtl; }
   .project-card.reverse > * { direction: ltr; }
   @media (max-width: 768px) { .project-card, .project-card.reverse { grid-template-columns: 1fr; direction: ltr; gap: 32px; } }
-  .project-img { width: 100%; aspect-ratio: 16/10; border-radius: 4px; overflow: hidden; background: #f0ede8; position: relative; }
+
+  .project-img { width: 100%; aspect-ratio: 16/10; border-radius: 4px; overflow: hidden; background: #f0ede8; }
   .project-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
   .project-img:hover img { transform: scale(1.03); }
   .project-img.dual { display: grid; grid-template-rows: 1fr 1fr; gap: 3px; }
-  .project-img.dual img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 0; transition: transform .5s; }
+  .project-img.dual img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .5s; border-radius: 0; }
   .project-img.dual:hover img { transform: scale(1.02); }
+  .pita-placeholder { width: 100%; aspect-ratio: 16/10; border-radius: 4px; background: linear-gradient(135deg, #e8f2ec 0%, #d4e8da 100%); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; }
+  .pita-placeholder span { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--green); opacity: .5; }
+
   .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
   .project-tag { font-size: 10px; letter-spacing: .08em; color: var(--green); border: 1px solid var(--green); padding: 2px 9px; border-radius: 20px; font-family: var(--mono); }
   .project-num { font-family: var(--serif); font-size: 13px; color: var(--ink-faint); margin-bottom: 8px; }
@@ -37,8 +54,11 @@
   .project-link { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink-muted); text-decoration: none; letter-spacing: .06em; text-transform: uppercase; border-bottom: 1px solid var(--rule); padding-bottom: 2px; transition: color .25s, border-color .25s; margin-right: 16px; }
   .project-link:hover { color: var(--green); border-color: var(--green); }
   .project-link.wip { color: var(--ink-faint); border-color: transparent; cursor: default; font-style: italic; text-transform: none; letter-spacing: 0; }
-  .pita-placeholder { width: 100%; aspect-ratio: 16/10; border-radius: 4px; background: linear-gradient(135deg, #e8f2ec 0%, #d4e8da 100%); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; }
-  .pita-placeholder span { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--green); opacity: .5; }
+
+  /* MIT MITES project card image pair */
+  .mit-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; width: 100%; aspect-ratio: 16/10; border-radius: 4px; overflow: hidden; }
+  .mit-pair img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+  .mit-pair:hover img { transform: scale(1.03); }
 </style>
 </head>
 <body>
@@ -58,38 +78,93 @@
 
 <div class="page-hero">
   <div class="section-tag reveal"><span class="section-tag-line"></span>Work</div>
-  <h1 class="page-hero-h1 reveal reveal-delay-1">Things I've <em>built.</em></h1>
+  <h1 class="page-hero-h1 reveal reveal-delay-1">Things I've <em>done.</em></h1>
 </div>
 
 <div class="work-page">
 
+  <!-- EXPERIENCE + PROGRAMS -->
   <div class="exp-section">
-    <div class="section-tag reveal"><span class="section-tag-line"></span>Experience</div>
-    <h2 class="section-h2 reveal reveal-delay-1">Where I've <em>worked.</em></h2>
+    <div class="section-tag reveal"><span class="section-tag-line"></span>Experience and programs</div>
+    <h2 class="section-h2 reveal reveal-delay-1">Roles, research, <em>and more.</em></h2>
     <div class="exp-list">
+
       <div class="exp-item reveal">
         <div class="exp-date">Summer 2025<br>Houston, TX</div>
-        <div><div class="exp-role">Software Engineering Intern</div><div class="exp-org">Goff Financial Group</div></div>
+        <div>
+          <div class="exp-role">Software Engineering Intern</div>
+          <div class="exp-org">Goff Financial Group</div>
+          <div class="exp-detail">Database systems and investment infrastructure.</div>
+        </div>
       </div>
+
       <div class="exp-item reveal reveal-delay-1">
         <div class="exp-date">May 2026<br>New York, NY</div>
-        <div><div class="exp-role">Focus Fellow</div><div class="exp-org">Jane Street</div></div>
+        <div>
+          <div class="exp-role">Focus Program</div>
+          <div class="exp-org">Jane Street</div>
+          <div class="exp-detail">Selective student program. A week of trading, probability, and market microstructure with Jane Street researchers and traders.</div>
+        </div>
       </div>
+
       <div class="exp-item reveal reveal-delay-2">
         <div class="exp-date">Jan 2026 – Present<br>Houston, TX</div>
-        <div><div class="exp-role">Undergraduate Research Assistant</div><div class="exp-org">Rice School of Engineering, Metanoia Group</div></div>
+        <div>
+          <div class="exp-role">Undergraduate Research Assistant</div>
+          <div class="exp-org">Rice School of Engineering, Metanoia Group</div>
+          <div class="exp-detail">ML inference benchmarking on edge hardware. FPGA prototyping in Verilog. 50% power reduction vs. baseline.</div>
+        </div>
       </div>
+
       <div class="exp-item reveal reveal-delay-3">
         <div class="exp-date">Oct 2024 – Present<br>Houston, TX</div>
-        <div><div class="exp-role">Software Developer</div><div class="exp-org">Machine Learning at Rice</div></div>
+        <div>
+          <div class="exp-role">Software Developer and Treasurer</div>
+          <div class="exp-org">Machine Learning at Rice</div>
+          <div class="exp-detail">Built ML pipelines for fraud detection. Also serve as club Treasurer.</div>
+        </div>
       </div>
+
       <div class="exp-item reveal reveal-delay-4">
-        <div class="exp-date">Oct – Dec 2025<br>Remote</div>
-        <div><div class="exp-role">AI Product Research Intern</div><div class="exp-org">YAI</div></div>
+        <div class="exp-date">Oct – Dec 2024<br>Denver, CO</div>
+        <div>
+          <div class="exp-role">Environmental Engineering Extern</div>
+          <div class="exp-org">Energy Innovation Capital</div>
+          <div class="exp-detail">VC research on clean-energy technologies. Benchmarked 15+ environmental companies, projected 19% ROI across portfolio. Built investment pitch decks and market analyses.</div>
+        </div>
       </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-date">Oct – Dec 2025<br>Remote</div>
+        <div>
+          <div class="exp-role">AI Product Research Intern</div>
+          <div class="exp-org">YAI</div>
+          <div class="exp-detail">Product viability analysis and competitor trend tooling. Cut workflow inefficiencies 50%.</div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal reveal-delay-1">
+        <div class="exp-date">Summer 2024<br>Cambridge, MA</div>
+        <div>
+          <div class="exp-role">MITES Summer Scholar</div>
+          <div class="exp-org">MIT</div>
+          <div class="exp-detail">Residential STEM program at MIT. Coursework, robotics, and living on campus inRew House. One of the more formative things I've done.</div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal reveal-delay-2">
+        <div class="exp-date">Present<br>Houston, TX</div>
+        <div>
+          <div class="exp-role">External Vice President</div>
+          <div class="exp-org">Rice Computer Science Club</div>
+          <div class="exp-detail">Managing external partnerships and outreach for the CS club.</div>
+        </div>
+      </div>
+
     </div>
   </div>
 
+  <!-- PROJECTS -->
   <div class="projects-section">
     <div class="section-tag reveal"><span class="section-tag-line"></span>Projects</div>
     <h2 class="section-h2 reveal reveal-delay-1">Things I've <em>shipped.</em></h2>
@@ -117,7 +192,7 @@
         <div class="project-num">02</div>
         <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Pandas</span><span class="project-tag">Feature Engineering</span></div>
         <h2 class="project-title">ML Fraud Detection</h2>
-        <p class="project-desc">Credit card fraud detection pipeline across 34,000 records. Engineered target-encoded features that pushed accuracy from 79% to 91% and achieved 6x higher fraud recall. Runtime dropped 30% through dimensionality reduction and smarter encoding.</p>
+        <p class="project-desc">Credit card fraud detection pipeline across 34,000 records. Engineered features that pushed accuracy from 79% to 91% and achieved 6x higher fraud recall. Runtime dropped 30% through smarter encoding and dimensionality reduction.</p>
         <a class="project-link" href="https://github.com/adonaikidane/CC-Fraud" target="_blank">GitHub</a>
       </div>
     </div>
@@ -151,14 +226,28 @@
 
     <div class="project-card reveal">
       <div class="project-img" style="aspect-ratio:16/10;">
-        <img src="../images/jane-street.jpg" alt="Jane Street Focus Fellows group photo" style="object-position:top center;">
+        <img src="../images/jane-street.jpg" alt="Jane Street Focus Program group photo" style="object-position:top center;">
       </div>
       <div>
         <div class="project-num">05</div>
         <div class="project-tags"><span class="project-tag">Quant Finance</span><span class="project-tag">Trading</span><span class="project-tag">Probability</span></div>
-        <h2 class="project-title">Jane Street, Focus Fellow</h2>
-        <p class="project-desc">Invitation-only trading and quantitative finance immersion at Jane Street's NYC office. Spent a week with traders and researchers working through systematic decision-making, probability, and market microstructure. One of the most genuinely eye-opening experiences I've had.</p>
+        <h2 class="project-title">Jane Street, Focus Program</h2>
+        <p class="project-desc">Selective student program at Jane Street's NYC office. Spent a week working through systematic decision-making, probability, and market microstructure alongside researchers and traders. One of the most genuinely eye-opening things I've done.</p>
         <a class="project-link" href="https://www.janestreet.com/join-jane-street/programs-and-events/focus-program/" target="_blank">About the program</a>
+      </div>
+    </div>
+
+    <div class="project-card reverse reveal">
+      <div class="mit-pair">
+        <img src="../images/mit-plasma.jpg" alt="MIT Plasma Science and Fusion Center">
+        <img src="../images/mit-meche.jpg" alt="MIT MechE display">
+      </div>
+      <div>
+        <div class="project-num">06</div>
+        <div class="project-tags"><span class="project-tag">Robotics</span><span class="project-tag">Engineering</span><span class="project-tag">Research</span></div>
+        <h2 class="project-title">MIT MITES Summer</h2>
+        <p class="project-desc">Residential STEM program at MIT, 1.5% acceptance rate. Six weeks of coursework, robotics, and living on campus in Rew House. Walked through the Plasma Science and Fusion Center, the MechE labs, and a lot of other places that made the world feel bigger.</p>
+        <a class="project-link" href="https://mites.mit.edu/" target="_blank">About MITES</a>
       </div>
     </div>
 
